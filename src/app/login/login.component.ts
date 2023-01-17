@@ -9,7 +9,7 @@ import { AuthenticationService } from '../_services/authentication.service';
 })
 export class LoginComponent { 
   usertype:string = "customer";
-  username:string = "";
+  email:string = "";
   password:string = "";
   isLoading:boolean = false; 
   errors:Array<string> = []; 
@@ -38,10 +38,10 @@ export class LoginComponent {
 
   login():void { 
     this.errors = []; 
-    this.username = this.username.trim();
+    this.email = this.email.trim().toLowerCase();
 
-    if(this.username == "") {
-      this.errors.push("Username cannot be empty")
+    if(this.email == "") {
+      this.errors.push("Email cannot be empty")
     }
 
     if(this.password == "") {
@@ -55,7 +55,7 @@ export class LoginComponent {
     this.isLoading = true; 
 
     if(this.usertype == "customer") {
-      this._authService.login(this.username, this.password, this.usertype).subscribe(
+      this._authService.login(this.email, this.password, this.usertype).subscribe(
         (data:any) => {
           if(data.header_rsp == "ok") { 
             this._authService.setCredentials(data);
@@ -75,7 +75,7 @@ export class LoginComponent {
       ); 
     }
     else if(this.usertype == "admin") {
-      this._authService.login(this.username, this.password, this.usertype).subscribe(
+      this._authService.login(this.email, this.password, this.usertype).subscribe(
         (data:any) => {
           if(data.header_rsp == "ok") { 
             this._authService.setCredentials(data);

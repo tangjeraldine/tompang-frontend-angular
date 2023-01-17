@@ -11,8 +11,8 @@
             </td>
         </tr> 
         <tr>
-            <td>Username: </td>
-            <td><input [(ngModel)]="username" [disabled]="isLoading" type="text" maxlength="20" size="30"></td>
+            <td>Email: </td>
+            <td><input [(ngModel)]="email" [disabled]="isLoading" type="text" maxlength="20" size="30"></td>
         </tr>
         <tr>
             <td>Password: </td>
@@ -24,7 +24,7 @@
             <td></td>
             <td>
                 <input [(ngModel)]="usertype" [disabled]="isLoading" style="margin-left: 0px;"type="radio" name="usertype" id="usertype_c" value="customer"> <label for="usertype_c" style="margin-right:0.2rem; margin-left: 0.2rem;">Customer</label>
-                <input [(ngModel)]="usertype" [disabled]="isLoading" type="radio" name="usertype" id="usertype_a" value="admin"> <label for="usertype_a" style="margin-right:0.2rem; margin-left: 0.2rem;">Admin</label>
+                <input [(ngModel)]="usertype" [disabled]="true" type="radio" name="usertype" id="usertype_a" value="admin"> <label for="usertype_a" style="margin-right:0.2rem; margin-left: 0.2rem;">Admin</label>
             </td>
         </tr>
         <tr>
