@@ -1,0 +1,13 @@
+.banner {
+  background-image: url(../../assets/images/road_bg_2.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: auto;
+  height: 100vh;
+}
+
+.textbox {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 30px;
+}

@@ -11,6 +11,7 @@ import { AuthenticationService } from './_services/authentication.service';
 import { RegisterComponent } from './register/register.component';
 import { LayoutComponentModule } from './layout-component/layout-component.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,
