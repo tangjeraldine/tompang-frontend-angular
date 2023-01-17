@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UsersComponentsModule } from '../LayoutComponents/users-components/users-components.module';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule, UsersComponentsModule],
+  declarations: [
+    HeaderComponent
+  ],
+  imports: [CommonModule],
 })
 export class UsersModule {}
