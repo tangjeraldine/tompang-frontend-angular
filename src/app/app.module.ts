@@ -12,6 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { LayoutComponentModule } from './layout-component/layout-component.module';
 import { ErrorComponent } from './error/error.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
