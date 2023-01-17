@@ -7,18 +7,22 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { TripComponent } from './trip/trip.component';
 import { AuthenticationService } from './_services/authentication.service';
+import { RegisterComponent } from './register/register.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    TripComponent
+    TripComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatFormFieldModule
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]
