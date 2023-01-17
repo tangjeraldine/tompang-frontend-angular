@@ -5,7 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { TripComponent } from './trip/trip.component';
 import { RegisterComponent } from './register/register.component';
 import { PublicLandingPgComponent } from './public-landing-pg/public-landing-pg.component';
-import { UsersLandingPgComponent } from './users/users-landing-pg/users-landing-pg.component';
+import { UsersLandingPgComponent } from './users-landing-pg/users-landing-pg.component';
 import { ErrorComponent } from './error/error.component';
 
 const routes: Routes = [
