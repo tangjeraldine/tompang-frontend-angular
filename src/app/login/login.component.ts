@@ -59,7 +59,8 @@ export class LoginComponent {
         (data:any) => {
           if(data.header_rsp == "ok") { 
             this._authService.setCredentials(data);
-            this.router.navigateByUrl("dashboard");
+            this.router.navigate(['/trip']);
+            return;
           }
           else {
             this.errors.push("Incorrect login credentials");
