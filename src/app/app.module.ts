@@ -9,6 +9,7 @@ import { PublicLandingPgComponent } from './public-landing-pg/public-landing-pg.
 import { TripComponent } from './trip/trip.component';
 import { AuthenticationService } from './_services/authentication.service';
 import { RegisterComponent } from './register/register.component';
+import { LayoutComponentModule } from './layout-component/layout-component.module';
 import { ErrorComponent } from './error/error.component';
 
 @NgModule({
@@ -20,7 +21,13 @@ import { ErrorComponent } from './error/error.component';
     RegisterComponent,
     ErrorComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    LayoutComponentModule,
+  ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent],
 })
