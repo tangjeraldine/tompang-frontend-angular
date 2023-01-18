@@ -1,4 +1,12 @@
-mat-card{
-    padding-top:20px;
-    padding-bottom:20px;
+form{
+    margin:0 auto;
+}
+td{
+    padding:15px 0 15px 0;
+    text-align: center;
+}
+table{
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 30px;
+    margin: auto; 
 }
