@@ -19,7 +19,7 @@ export class LoginComponent {
     private _authService: AuthenticationService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
     if (this.activatedRoute.snapshot.paramMap.get('error') == '1') {

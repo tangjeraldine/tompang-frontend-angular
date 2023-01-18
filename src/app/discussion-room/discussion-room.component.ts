@@ -82,7 +82,49 @@ export class DiscussionRoomComponent {
     )
   }
 
+  changeRoom() { 
+    if(this.incoming_msg_subscription_ref != undefined) {
+      this.incoming_msg_subscription_ref.unsubscribe();
+      this.incoming_msg_subscription_ref = undefined;
+    }
+
+    if(this.users_online_subscription_ref != undefined) {
+      this.users_online_subscription_ref.unsubscribe();
+      this.users_online_subscription_ref = undefined;
+    }
+
+    //Subscribe to listen for users online 
+    this.users_online_subscription_ref = this._stompService.subscribe("/client/users-online/" + this.selected_dr_id, (data:any)=>{
+      this.updateUsersOnline(data);
+    })
+
+    //Subscribe to refresh page when new message comes it
+    this.incoming_msg_subscription_ref = this._stompService.subscribe("/client/new-message-status/" + this.selected_dr_id, (data:any)=>{
+      if(this.message_list.length >= 10) {
+        this.changePage(this.current_page+1);
+      }
+      else {
+        this.changePage(this.current_page);
+      }
+    });
+
+    //Send a notification that you are check in 
+    this._stompService.send("/server/check-in", {dr_id: this.selected_dr_id});  
+
+    this.changePage(1);
+  }
+
   ngOnDestroy() {
+    if(this.incoming_msg_subscription_ref != undefined) {
+      this.incoming_msg_subscription_ref.unsubscribe();
+      this.incoming_msg_subscription_ref = undefined;
+    }
+
+    if(this.users_online_subscription_ref != undefined) {
+      this.users_online_subscription_ref.unsubscribe();
+      this.users_online_subscription_ref = undefined;
+    }
+    
     this._stompService.cleanUp();
   }
 
@@ -92,7 +134,7 @@ export class DiscussionRoomComponent {
       return;
     }
  
-    this._discussionRoomService.getRooms().subscribe(
+    this._discussionRoomService.getRoomsAndMessages().subscribe(
       (data:any)=>{
         this.discussion_room_list = data.discussion_room_list;
         this.message_list = data.message_list;
@@ -133,7 +175,7 @@ export class DiscussionRoomComponent {
         return;
       }
     )
-  }
+  } 
 
   updateUsersOnline(data:any) {
     this.users_online = JSON.parse(data.body); 

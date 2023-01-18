@@ -1,1 +1,111 @@
-<p>users-trip-list works!</p>
+<div style="width: 80%;">
+    <table style="width: 100%; border: 1px solid;">
+        <tr>
+            <td>ID: </td>
+            <td>From postal code</td>
+            <td>To postal code</td>
+            <td>Description</td>
+            <td>Role</td>
+            <td>Days I am looking for</td>
+            <td>Time of day</td>
+            <td></td>
+        </tr>
+        <ng-container *ngFor="let t of this.trip_list;index as i">
+            <ng-container *ngIf="i==this.edit_row_index;else elseBlock">
+                <tr>
+                    <td>{{t.id}}</td>
+                    <td><input type="text" name="edit_from_postal_{{i}}" [(ngModel)]="edit_from_postal"></td>
+                    <td><input type="text" name="edit_to_postal_{{i}}" [(ngModel)]="edit_to_postal"></td>
+                    <td><textarea name="edit_description_{{i}}" [(ngModel)]="edit_description"></textarea></td>
+                    <td> 
+                        <input type="radio" value="1" 
+                        name="edit_role_{{i}}" 
+                        [checked]="edit_role=='1'"
+                        (change)="editRole(1)"> Driver
+                        <br>
+                        <input type="radio" value="2" 
+                        [checked]="edit_role=='2'"
+                        name="edit_role_{{i}}" 
+                        (change)="editRole(2)"> Passenger
+                    </td>
+                    <td>
+                        <input type="checkbox" name="mon_{{i}}_cb" [(ngModel)]="this.edit_days[0]" [checked]="this.contains(t.days, '1')"> Monday
+                        <br>
+                        <input type="checkbox" name="tue_{{i}}_cb" [(ngModel)]="this.edit_days[1]" [checked]="this.contains(t.days, '2')"> Tuesday
+                        <br>
+                        <input type="checkbox" name="wed_{{i}}_cb" [(ngModel)]="this.edit_days[2]" [checked]="this.contains(t.days, '3')"> Wednesday
+                        <br>
+                        <input type="checkbox" name="thu_{{i}}_cb" [(ngModel)]="this.edit_days[3]" [checked]="this.contains(t.days, '4')"> Thursday
+                        <br>
+                        <input type="checkbox" name="fri_{{i}}_cb" [(ngModel)]="this.edit_days[4]" [checked]="this.contains(t.days, '5')"> Friday
+                        <br>
+                        <input type="checkbox" name="sat_{{i}}_cb" [(ngModel)]="this.edit_days[5]" [checked]="this.contains(t.days, '6')"> Saturday
+                        <br>
+                        <input type="checkbox" name="sun_{{i}}_cb" [(ngModel)]="this.edit_days[6]" [checked]="this.contains(t.days, '7')"> Sunday
+                    </td>
+                    <td>
+                        <input type="radio" value="1" 
+                        name="edit_time_of_day_{{i}}" 
+                        [checked]="edit_time_of_day=='1'"
+                        (change)="editTimeOfDay(1)"> Morning
+                        <br>
+                        <input type="radio" value="2" 
+                        [checked]="edit_time_of_day=='2'"
+                        name="edit_time_of_day_{{i}}" 
+                        (change)="editTimeOfDay(2)"> Afternoon
+                        <br>
+                        <input type="radio" value="3" 
+                        [checked]="edit_time_of_day=='3'"
+                        name="edit_time_of_day_{{i}}" 
+                        (change)="editTimeOfDay(3)"> Evening
+                    </td>
+                    <td>
+                        <button (click)="update()">Update</button>
+                        <br>
+                        <button (click)="cancelEdit()">Cancel</button>
+                    </td>
+                </tr>
+                <tr *ngIf="this.edit_from_postal_error || this.edit_to_postal_error || this.edit_description_error || this.edit_days_error">
+                    <td></td>
+                    <td>{{this.edit_from_postal_error}}</td>
+                    <td>{{this.edit_to_postal_error}}</td>
+                    <td>{{this.edit_description_error}}</td>
+                    <td></td>
+                    <td>{{this.edit_days_error}}</td>
+                    <td colspan="2"></td>
+                </tr>
+            </ng-container>
+            <ng-template #elseBlock> 
+                <tr>
+                    <td>{{t.id}}</td>
+                    <td>{{t.fromPostal}}</td>
+                    <td>{{t.toPostal}}</td>
+                    <td>{{t.description}}</td> 
+                    <td>
+                        <span *ngIf="t.role=='1'">
+                            Driver looking for passengers
+                        </span>
+                        <span *ngIf="t.role=='2'">
+                            Passenger looking for driver
+                        </span>
+                    </td>
+                    <td>
+                        {{this.parseToDaysStr(t.days)}}
+                    </td>
+                    <td>
+                        {{this.parseTimeOfDay(t.timeOfDay)}}
+                    </td>
+                    <td>
+                        <button (click)="edit(i)">Edit</button>
+                        <br>
+                        <button (click)="delete(i)">Delete</button>
+                        <br>
+                        <button>All users with same direction</button> 
+                    </td>
+                </tr>
+            </ng-template>
+        </ng-container>  
+    </table> 
+
+</div>
+<app-header-user></app-header-user>

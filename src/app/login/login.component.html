@@ -74,19 +74,27 @@
         </td>
       </tr>
       <tr>
-        <td colspan="2" class="text-center" >
+        <td class="text-center" >
           <button
             [style.display]="this.isLoading ? 'none' : 'inline'"
             (click)="login()"
-            class="group relative inline-block overflow-hidden border border-orange-500 px-8 py-3 focus:outline-none focus:ring"
+            class="inline-block rounded bg-red-500 px-8 py-3 transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-red-700"
           >
-          <span
-          class="absolute inset-y-0 left-0 w-[2px] bg-red-600 transition-all group-hover:w-full"
-        ></span>
         <span
-        class="relative text-sm font-medium text-red-500 transition-colors group-hover:text-white"
+        class="relative text-sm font-medium text-white transition-colors group-hover:text-amber-500"
       >Login</span>
           </button>
+        </td>
+        <td>
+          <button
+          class="inline-block rounded border border-red-500 px-8 py-3 transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-red-700"
+          routerLink="/home"
+        >
+          <span
+            class="relative text-sm font-medium text-red-500 transition-colors"
+            >Back to Home</span
+          >
+        </button>
         </td>
       </tr>
       <tr colspan="2" *ngIf="errors.length != 0">
