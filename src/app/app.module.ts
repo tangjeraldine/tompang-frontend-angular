@@ -1,6 +1,8 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,14 +11,17 @@ import { PublicLandingPgComponent } from './public-landing-pg/public-landing-pg.
 import { TripComponent } from './trip/trip.component';
 import { AuthenticationService } from './_services/authentication.service';
 import { RegisterComponent } from './register/register.component';
+import { MatInputModule } from '@angular/material/input';
 import { LayoutComponentModule } from './layout-component/layout-component.module';
 import { ErrorComponent } from './error/error.component';
 import { UsersTripListComponent } from './users-trip-list/users-trip-list.component';
 import { EmailVerificationPgComponent } from './email-verification-pg/email-verification-pg.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { CookieService } from 'ngx-cookie-service';
 import { DiscussionRoomComponent } from './discussion-room/discussion-room.component';
 import { StompService } from './_services/stomp.service';
+import { MatButtonModule } from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -28,7 +33,7 @@ import { StompService } from './_services/stomp.service';
     ErrorComponent,
     UsersTripListComponent,
     EmailVerificationPgComponent,
-    DiscussionRoomComponent
+    DiscussionRoomComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,9 +41,13 @@ import { StompService } from './_services/stomp.service';
     FormsModule,
     HttpClientModule,
     LayoutComponentModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatInputModule,
+    BrowserAnimationsModule,
   ],
-  providers: [AuthenticationService,CookieService,StompService],
-  bootstrap: [AppComponent] 
+  providers: [AuthenticationService, CookieService, StompService],
+  bootstrap: [AppComponent],
 })
-export class AppModule {} 
+export class AppModule {}
