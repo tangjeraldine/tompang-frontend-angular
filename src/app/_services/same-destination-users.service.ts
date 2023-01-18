@@ -13,11 +13,11 @@ export class SameDestinationUsersService {
 
   constructor(private authService: AuthenticationService, private httpClient:HttpClient) { }
 
-  listUsersWithSameTrips(fromPostal:string, toPostal:string) {
+  listUsersWithSameTrips(fromPostal:string, toPostal:string,days:string,timeOfDay:string) {
 
     
 
-    return this.httpClient.get(`${this.baseURL}/trip/getTripSameDest/${fromPostal}/${toPostal}`+'?'+this.authService.generateAuthParamsStr());
+    return this.httpClient.get(`${this.baseURL}/trip/getTripSameDest/${fromPostal}/${toPostal}/${days}/${timeOfDay}`+'?'+this.authService.generateAuthParamsStr());
 
   }
 
