@@ -11,6 +11,8 @@ import { AuthenticationService } from './_services/authentication.service';
 import { RegisterComponent } from './register/register.component';
 import { LayoutComponentModule } from './layout-component/layout-component.module';
 import { ErrorComponent } from './error/error.component';
+import { UsersTripListComponent } from './users-trip-list/users-trip-list.component';
+import { EmailVerificationPgComponent } from './email-verification-pg/email-verification-pg.component';
 
 
 @NgModule({
@@ -21,6 +23,8 @@ import { ErrorComponent } from './error/error.component';
     TripComponent,
     RegisterComponent,
     ErrorComponent,
+    UsersTripListComponent,
+    EmailVerificationPgComponent,
   ],
   imports: [
     BrowserModule,
