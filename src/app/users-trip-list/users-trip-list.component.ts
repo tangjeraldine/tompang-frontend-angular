@@ -39,12 +39,17 @@ export class UsersTripListComponent {
         this.trip_list = data;   
       },
       (error)=> {
-        this.router.navigate(['/login', {expired:'1'}])
+        this.router.navigate(['/login', {expired:'1'}]) 
       }
     )
   }
 
   update() {
+    this.edit_from_postal_error = "";
+    this.edit_to_postal_error = ""; 
+    this.edit_description_error = "";
+    this.edit_days_error = "";
+
     //Validation before updating
     var regex = /^[0-9]{6}$/;
     if(!regex.test(this.edit_from_postal)) {
@@ -126,6 +131,17 @@ export class UsersTripListComponent {
 
   cancelEdit() {
     this.edit_row_index = -1;
+    this.edit_from_postal_error = "";
+    this.edit_to_postal_error = ""; 
+    this.edit_description_error = "";
+    this.edit_days_error = ""; 
+
+    this.edit_from_postal="";
+    this.edit_to_postal="";
+    this.edit_description=""; 
+    this.edit_role="";
+    this.edit_days=[false,false,false,false,false,false,false];
+    this.edit_time_of_day="";
   }
 
   edit(index:number) {

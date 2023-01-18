@@ -85,7 +85,7 @@ export class TripComponent implements OnInit {
       timeOfDay: this.timeOfTheDay,
     }); 
     this.addTripServ.addTrip(this.addNewTrip.value).subscribe((data) => {
-      console.log('Trip added!');
+      alert("SUCCESS!");
     });
   }
 
