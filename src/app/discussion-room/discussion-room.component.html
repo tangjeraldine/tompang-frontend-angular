@@ -1,0 +1,78 @@
+
+<div style="width: fit-content; margin:auto; width: 80%; margin-top: 2rem;" 
+ >
+    
+    <table style="width: 100%; height: 50%; border: 1px solid;"
+     (dragover)="dragOver($event)"
+     (dragleave)="dragLeave($event)"
+     (drop)="drop($event)">
+        <tr *ngIf="this.is_dragging_file">
+            <td colspan="3" style="background-color: lightblue;">
+                Drop file to upload and share!
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <select [(ngModel)]="selected_dr_id">
+                    <option *ngFor="let rm of this.discussion_room_list" [value]="rm.id">
+                        {{rm.fromPostal}}XXX to {{rm.toPostal}}XXX
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr *ngFor="let msg of this.message_list">
+            <td>@{{msg.customer.username}}</td>
+            <td>{{msg.date}}</td>
+            <td style="width: 65%;">
+                <span *ngIf="msg.fileMessage">
+                    @{{msg.customer.username}} uploaded
+                    <div style="width: 25%;">
+                        <img src="http://localhost:8080/discussion-message-uploads/{{msg.fileMessage}}">
+                    </div>
+                    
+                </span>
+                <span *ngIf="msg.message">
+                    {{msg.message}}
+                </span>
+            </td>
+        </tr>
+        <tr *ngIf="this.current_page==this.total_message_pages.length">
+
+            <td colspan="2">
+
+                <small>Users currently online: 
+                    <span *ngFor="let i of this.users_online;last as last">
+                        @{{i}}<span *ngIf="!last">, </span>
+                    </span>
+                </small>
+
+            </td>
+            <td>
+                <textarea style="width: 80%; resize: none;" [(ngModel)]="new_message"></textarea>
+                <br>
+                <button (click)="sendMessage()">Send</button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3"> 
+                <div style="width: fit-content; margin:auto">
+                    <div class="pagination">
+                        <a 
+                        *ngIf="this.current_page>1"
+                        (click)="changePage(this.current_page-1)">&laquo;</a> 
+            
+                        <a *ngFor="let p of this.total_message_pages" 
+                        [class.active]="p==this.current_page"
+                        (click)="(p != this.current_page)?changePage(p):null">   
+                        {{p}}
+                        </a>  
+            
+                        <a 
+                        *ngIf="this.current_page<this.total_message_pages.length"
+                        (click)="changePage(this.current_page+1)">&raquo;</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>

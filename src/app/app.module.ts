@@ -14,7 +14,12 @@ import { RegisterComponent } from './register/register.component';
 import { MatInputModule } from '@angular/material/input';
 import { LayoutComponentModule } from './layout-component/layout-component.module';
 import { ErrorComponent } from './error/error.component';
-import {MatButtonModule} from '@angular/material/button';
+import { UsersTripListComponent } from './users-trip-list/users-trip-list.component';
+import { EmailVerificationPgComponent } from './email-verification-pg/email-verification-pg.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { CookieService } from 'ngx-cookie-service';
+import { DiscussionRoomComponent } from './discussion-room/discussion-room.component';
+import { StompService } from './_services/stomp.service';import {MatButtonModule} from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -26,6 +31,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TripComponent,
     RegisterComponent,
     ErrorComponent
+    UsersTripListComponent,
+    EmailVerificationPgComponent,
+    DiscussionRoomComponent
   ],
   imports: [
     BrowserModule,
@@ -33,12 +41,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     HttpClientModule,
     LayoutComponentModule,
+    MatFormFieldModule
     ReactiveFormsModule,
     MatButtonModule,
     MatInputModule,
     BrowserAnimationsModule
   ],
-  providers: [AuthenticationService],
-  bootstrap: [AppComponent],
+  providers: [AuthenticationService,CookieService,StompService],
+  bootstrap: [AppComponent] 
 })
-export class AppModule {}
+export class AppModule {} 

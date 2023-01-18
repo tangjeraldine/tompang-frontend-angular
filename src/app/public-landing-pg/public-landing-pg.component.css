@@ -11,3 +11,11 @@
   background: rgba(0, 0, 0, 0.7);
   border-radius: 30px;
 }
+
+.car {
+  max-width: 45%;
+}
+
+.piggy_bank, .friends {
+  max-width: 35%;
+}

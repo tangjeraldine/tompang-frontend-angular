@@ -1,12 +1,11 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { TripComponent } from './trip/trip.component';
 import { RegisterComponent } from './register/register.component';
 import { PublicLandingPgComponent } from './public-landing-pg/public-landing-pg.component';
-import { UsersLandingPgComponent } from './users-landing-pg/users-landing-pg.component';
-import { ErrorComponent } from './error/error.component';
+import { UsersLandingPgComponent } from './users/users-landing-pg/users-landing-pg.component';
 
 const routes: Routes = [
   {
@@ -14,17 +13,26 @@ const routes: Routes = [
     component: PublicLandingPgComponent,
   },
   {
+    path: 'email-verif',
+    component: EmailVerificationPgComponent,
+  },
+  {
+    path: 'trip',
+    component: TripComponent,
+    // children: [{ path: '/examplepage', component: UsersLandingPgComponent }],
+  },
+  {
     path: 'users',
     component: UsersLandingPgComponent,
-    children: [{ path: '', component: UsersLandingPgComponent }],
+  },
+  {
+    path: 'trip-list',
+    component: UsersTripListComponent,
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'trip', component: TripComponent },
-  {
-    path: '**',
-    component: ErrorComponent,
-  },
+  { path: 'discussion-room', component: DiscussionRoomComponent}
 ];
 
 @NgModule({
