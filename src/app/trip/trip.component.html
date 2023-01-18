@@ -1,3 +1,4 @@
+<app-header-user></app-header-user>
 <section
   class="relative bg-[url(https://images.pexels.com/photos/7464537/pexels-photo-7464537.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)] bg-cover bg-center bg-no-repeat"
 >
@@ -127,7 +128,11 @@
     </p>
   </div>
 
-  <form [formGroup]="addNewTrip" class="mx-auto mt-8 mb-0 max-w-md space-y-4">
+  <form
+    [formGroup]="addNewTrip"
+    (submit)="addNewTripDetails()"
+    class="mx-auto mt-8 mb-0 max-w-md space-y-4"
+  >
     <div>
       <input type="text" hidden class="sr-only" formControlName="roleType" />
       <label for="email" class="sr-only">From</label>
@@ -244,14 +249,13 @@
       </div>
     </div>
 
+    <div class="flex items-center justify-between"></div>
+
     <div class="flex items-center justify-between">
-      <!-- <p class="text-sm text-gray-500">
-        No account?
-        <a class="underline" href="">Sign up</a>
-      </p> -->
       <button
         type="submit"
         class="ml-3 inline-block rounded-lg bg-gray-300 px-5 py-3 text-sm font-medium text-red-700"
+        (click)="resetFields()"
       >
         Start Over
       </button>

@@ -1,4 +1,4 @@
-
+<app-header-user></app-header-user>
 <div style="width: fit-content; margin:auto; width: 80%; margin-top: 2rem;" 
  >
     
@@ -13,8 +13,8 @@
         </tr>
         <tr>
             <td colspan="3">
-                <select [(ngModel)]="selected_dr_id">
-                    <option *ngFor="let rm of this.discussion_room_list" [value]="rm.id">
+                <select [(ngModel)]="selected_dr_id" (change)="changeRoom()">
+                    <option *ngFor="let rm of this.discussion_room_list" [value]="rm.id" >
                         {{rm.fromPostal}}XXX to {{rm.toPostal}}XXX
                     </option>
                 </select>
@@ -36,7 +36,7 @@
                 </span>
             </td>
         </tr>
-        <tr *ngIf="this.current_page==this.total_message_pages.length">
+        <tr *ngIf="this.current_page==this.total_message_pages.length || this.total_message_pages.length==0">
 
             <td colspan="2">
 

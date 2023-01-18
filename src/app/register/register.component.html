@@ -1,123 +1,218 @@
 <!--Chris Code-->
-<form [formGroup]="registerForm" (submit)="createUser()">
-<table >
-  <tr>
-    <td colspan="2">
-      <h1 class="text-3xl font-extrabold sm:text-5xl text-white" style="padding:30px">
-      Registration Form
-      </h1>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <h3>Full Name</h3>
-    </td>
-    <td>
-    <input class="form-control" formControlName="fName">
-    <br>
-    <div *ngIf="registerForm.controls['fName'].invalid && registerForm.controls['fName'].touched">
-      <label *ngIf="registerForm.controls['fName'].hasError('required')">
-        Please enter a full name
-      </label>
-      <label *ngIf="registerForm.controls['fName'].hasError('minlength')">
-        Full Name must be at least 10 characters long
-      </label>
-    </div>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <h3>Phone</h3>
-    </td>
-    <td>
-    <input class="form-control" formControlName="phone">
-    <br>
-    <div *ngIf="registerForm.controls['phone'].invalid && registerForm.controls['phone'].touched">
-      <label *ngIf="registerForm.controls['phone'].hasError('required') || registerForm.controls['phone'].hasError('minlength')|| registerForm.controls['phone'].hasError('maxlength')">
-        Please enter a valid phone address
-      </label>
-    </div>
-    </td>
-  </tr>  
-  <tr>
-    <td>
-      <h3>Date Of Birth</h3>
-    </td>
-    <td>
-    <input type="date" class="form-control" formControlName="DOB">
-    <br>
-    <div *ngIf="registerForm.controls['DOB'].invalid && registerForm.controls['DOB'].touched">
-      <label *ngIf="registerForm.controls['DOB'].hasError('required')">
-        Please enter your Date of Birth
-      </label>
-    </div>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <h3>UserName</h3>
-    </td>
-    <td>
-    <input class="form-control" formControlName="uName">
-    <br>
-    <div *ngIf="registerForm.controls['uName'].invalid && registerForm.controls['uName'].touched">
-      <label *ngIf="registerForm.controls['uName'].hasError('required') || registerForm.controls['uName'].hasError('minlength')">
-        Please enter your UserName
-      </label>
-    </div>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <h3>Email</h3>
-    </td>
-    <td>
-    <input class="form-control" formControlName="email">
-    <br>
-    <div *ngIf="registerForm.controls['email'].invalid && registerForm.controls['email'].touched">
-      <label *ngIf="registerForm.controls['email'].hasError('required') || registerForm.controls['email'].hasError('email')">
-        Please enter your Email
-      </label>
-    </div>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <h3>Password</h3>
-    </td>
-    <td>
-    <input class="form-control" formControlName="pw">
-    <br>
-    <div *ngIf="registerForm.controls['pw'].invalid && registerForm.controls['pw'].touched">
-      <label *ngIf="registerForm.controls['pw'].hasError('required') || registerForm.controls['pw'].hasError('minlength')">
-        Please enter your Password
-      </label>
-    </div>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <h3>Confirm Password</h3>
-    </td>
-    <td>
-    <input class="form-control" formControlName="pwConfirm">
-    <br>
-    <div *ngIf="registerForm.controls['pwConfirm'].invalid && registerForm.controls['pwConfirm'].touched">
-      <label *ngIf="registerForm.controls['pwConfirm'].hasError('required')">
-        Please confirm the password
-      </label>
-      <label *ngIf="registerForm.errors?.['notmatched'] && !(registerForm.controls['pwConfirm'].hasError('required'))">
-        Passwords must match
-      </label>
-    </div>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-        <button [disabled]="registerForm.invalid" class="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-red-600 shadow hover:text-red-700 hover:bg-slate-300 focus:outline-none focus:ring active:text-red-500 sm:w-auto">
-          Submit
-        </button>
-    </td>
-  </tr>
-  </table>
-</form>
+<section class="relative flex flex-wrap lg:h-screen lg:items-center">
+  <!-- Register Image Display -->
+  <div class="relative h-64 w-full sm:h-96 lg:h-full lg:w-1/2">
+    <img
+      alt="welcome_image"
+      src="../../assets/images/car_bg_2.jpg"
+      class="absolute inset-0 h-full w-full object-cover"
+    />
+  </div>
+  <div
+    class="grid place-items-center w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24"
+  >
+    <form [formGroup]="registerForm" (submit)="createUser()">
+      <table class="mt-8 mb-0 max-w-sm">
+        <tr>
+          <td colspan="2" class="text-2xl font-bold sm:text-3xl text-center">
+            <span>Registration Form</span>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="mt-4 text-gray-500 text-center">
+            Please fill up the form with the relevant information.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <input
+              type="text"
+              formControlName="fName"
+              class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg"
+              placeholder="Please enter your Full Name"
+            />
+            <div
+              *ngIf="
+                registerForm.controls['fName'].invalid &&
+                registerForm.controls['fName'].touched
+              "
+            >
+              <label
+                *ngIf="registerForm.controls['fName'].hasError('required')"
+              >
+                Please enter a full name
+              </label>
+              <label
+                *ngIf="registerForm.controls['fName'].hasError('minlength')"
+              >
+                Full Name must be at least 10 characters long
+              </label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <input
+              type="text"
+              formControlName="phone"
+              class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg"
+              placeholder="Please enter your phone number"
+            />
+            <br />
+            <div
+              *ngIf="
+                registerForm.controls['phone'].invalid &&
+                registerForm.controls['phone'].touched
+              "
+            >
+              <label
+                *ngIf="
+                  registerForm.controls['phone'].hasError('required') ||
+                  registerForm.controls['phone'].hasError('minlength') ||
+                  registerForm.controls['phone'].hasError('maxlength')
+                "
+              >
+                Please enter a valid phone address
+              </label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="date" formControlName="DOB" class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg"
+            placeholder="Please select your Date of Birth"/>
+            <div
+              *ngIf="
+                registerForm.controls['DOB'].invalid &&
+                registerForm.controls['DOB'].touched
+              "
+            >
+              <label *ngIf="registerForm.controls['DOB'].hasError('required')">
+                Please enter your Date of Birth
+              </label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <input
+              type="text"
+              formControlName="uName"
+              class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg"
+              placeholder="Please enter your desired user name"
+            />
+            <br />
+            <div
+              *ngIf="
+                registerForm.controls['uName'].invalid &&
+                registerForm.controls['uName'].touched
+              "
+            >
+              <label
+                *ngIf="
+                  registerForm.controls['uName'].hasError('required') ||
+                  registerForm.controls['uName'].hasError('minlength')
+                "
+              >
+                Invalid user name
+              </label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <input
+              formControlName="email"
+              class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg"
+              placeholder="Please enter your email address"
+            />
+            <br />
+            <div
+              *ngIf="
+                registerForm.controls['email'].invalid &&
+                registerForm.controls['email'].touched
+              "
+            >
+              <label
+                *ngIf="
+                  registerForm.controls['email'].hasError('required') ||
+                  registerForm.controls['email'].hasError('email')
+                "
+              >
+                Invalid input
+              </label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <input
+              formControlName="pw"
+              class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg"
+              placeholder="Please enter your desired password"
+            />
+            <br />
+            <div
+              *ngIf="
+                registerForm.controls['pw'].invalid &&
+                registerForm.controls['pw'].touched
+              "
+            >
+              <label
+                *ngIf="
+                  registerForm.controls['pw'].hasError('required') ||
+                  registerForm.controls['pw'].hasError('minlength')
+                "
+              >
+                Please enter your Password
+              </label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <input
+              formControlName="pwConfirm"
+              class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg"
+              placeholder="Please confirm your password"
+            />
+            <br />
+            <div
+              *ngIf="
+                registerForm.controls['pwConfirm'].invalid &&
+                registerForm.controls['pwConfirm'].touched
+              "
+            >
+              <label
+                *ngIf="registerForm.controls['pwConfirm'].hasError('required')"
+              >
+                Please confirm the password
+              </label>
+              <label
+                *ngIf="registerForm.errors?.['notmatched'] && !(registerForm.controls['pwConfirm'].hasError('required'))"
+              >
+                Passwords must match
+              </label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <button
+              [disabled]="registerForm.invalid"
+              class="group relative inline-block overflow-hidden border border-amber-500 px-8 py-3 focus:outline-none focus:ring w-full"
+            >
+              <span
+                class="absolute inset-y-0 left-0 w-[2px] bg-rose-600 transition-all group-hover:w-full"
+              ></span>
+              <span
+                class="relative text-sm font-medium text-amber-500 transition-colors group-hover:text-white"
+                >Proceed to Verification</span
+              >
+            </button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</section>

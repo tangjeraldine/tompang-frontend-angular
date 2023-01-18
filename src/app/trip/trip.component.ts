@@ -8,6 +8,15 @@ import {
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../_services/authentication.service';
 
+const tripDetObj = {
+  fromPostal: '',
+  toPostal: '',
+  role: '',
+  days: '',
+  timeOfDay: '',
+  description: '',
+};
+
 @Component({
   selector: 'app-trip',
   templateUrl: './trip.component.html',
@@ -16,6 +25,7 @@ import { AuthenticationService } from '../_services/authentication.service';
 export class TripComponent implements OnInit {
   addNewTrip!: FormGroup;
   role!: number;
+  tripObj: any;
 
   changeRole1() {
     this.role = 2;
@@ -56,4 +66,10 @@ export class TripComponent implements OnInit {
       ]),
     });
   }
+
+  resetFields() {
+    this.addNewTrip.reset();
+  }
+
+  addNewTripDetails() {}
 }

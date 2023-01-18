@@ -24,14 +24,8 @@ const routes: Routes = [
   {
     path: 'trip',
     component: TripComponent,
-
-    children: [
-      {
-        path: 'trip-list',
-        component: UsersTripListComponent,
-      },
-    ],
   },
+  { path: 'trips', component: UsersTripListComponent}, 
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'discussion-room', component: DiscussionRoomComponent },
