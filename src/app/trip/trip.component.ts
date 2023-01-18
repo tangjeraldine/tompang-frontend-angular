@@ -12,7 +12,8 @@ const tripDetObj = {
   fromPostal: '',
   toPostal: '',
   role: '',
-  tags: '',
+  days: '',
+  timeOfDay: '',
   description: '',
 };
 
