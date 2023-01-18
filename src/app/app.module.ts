@@ -24,6 +24,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AddTripComponent } from './add-trip/add-trip.component';
+import { ListUsersWithSameDestinationComponent } from './list-users-with-same-destination/list-users-with-same-destination.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { AddTripComponent } from './add-trip/add-trip.component';
     UsersTripListComponent,
     EmailVerificationPgComponent,
     DiscussionRoomComponent,
-    AddTripComponent
+    AddTripComponent,
+    ListUsersWithSameDestinationComponent
   ],
   imports: [
     BrowserModule,

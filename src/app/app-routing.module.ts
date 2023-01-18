@@ -10,6 +10,10 @@ import { DiscussionRoomComponent } from './discussion-room/discussion-room.compo
 import { UsersTripListComponent } from './users-trip-list/users-trip-list.component';
 const routes: Routes = [
   {
+    path: 'viewUserWithSameDest/:fromPost/toPost',
+    component: PublicLandingPgComponent,
+  },
+  {
     path: '',
     component: PublicLandingPgComponent,
   },
