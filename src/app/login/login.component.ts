@@ -59,7 +59,7 @@ export class LoginComponent {
         .login(this.email, this.password, this.usertype)
         .subscribe(
           (data: any) => {
-            if (data.header_rsp == 'ok') {
+            if (data.header_rsp == 'ok') { 
               this._authService.setCredentials(data);
               this.router.navigate(['/trip']);
               return;
@@ -69,7 +69,7 @@ export class LoginComponent {
               this.isLoading = false;
             }
           },
-          (error: any) => {
+          (error: any) => { 
             this.errors.push(
               'Opps! We ran into some problems, please try to login again'
             );

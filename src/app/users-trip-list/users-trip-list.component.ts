@@ -35,7 +35,7 @@ export class UsersTripListComponent {
     } 
 
     this._tripService.getTrips().subscribe(
-      (data:any)=>{
+      (data:any)=>{ 
         this.trip_list = data;   
       },
       (error)=> {
