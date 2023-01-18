@@ -1,5 +1,13 @@
 table, th, td {
-    padding: 0.5rem;
+    padding: 0.25rem;
     margin: 3rem;
     width: 30rem;
+}
+
+input.ng-invalid.ng-touched {
+    border: red 1px solid;
+}
+
+button {
+    width: 100%;
 }

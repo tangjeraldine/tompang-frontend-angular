@@ -3,3 +3,7 @@ table, th, td {
     margin: 3rem;
     width: 30rem;
 }
+
+button {
+    width: 100%;
+}

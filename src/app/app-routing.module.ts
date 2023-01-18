@@ -18,6 +18,10 @@ const routes: Routes = [
     component: PublicLandingPgComponent,
   },
   {
+    path: 'home',
+    component: PublicLandingPgComponent,
+  },
+  {
     path: 'email-verif',
     component: EmailVerificationPgComponent,
   },
