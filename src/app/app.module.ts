@@ -23,6 +23,9 @@ import { StompService } from './_services/stomp.service';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { AddTripComponent } from './add-trip/add-trip.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +37,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     UsersTripListComponent,
     EmailVerificationPgComponent,
     DiscussionRoomComponent,
+    AddTripComponent
   ],
   imports: [
     BrowserModule,
