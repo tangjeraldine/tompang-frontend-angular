@@ -17,6 +17,8 @@ export class DiscussionRoomComponent {
     private _stompService: StompService
   ) {}
 
+  username = '';
+
   discussion_room_list: any;
   message_list: any;
   current_page = 1;
@@ -28,8 +30,12 @@ export class DiscussionRoomComponent {
 
   incoming_msg_subscription_ref: any = undefined;
   users_online_subscription_ref: any = undefined;
+  typing_subscription_ref: any = undefined;
+  stop_typing_subscription_ref: any = undefined;
 
   users_online = [];
+
+  users_typing: Array<string> = [];
 
   dragOver(event: Event) {
     event.preventDefault();
@@ -96,6 +102,16 @@ export class DiscussionRoomComponent {
       this.users_online_subscription_ref = undefined;
     }
 
+    if (this.typing_subscription_ref != undefined) {
+      this.typing_subscription_ref.unsubscribe();
+      this.typing_subscription_ref = undefined;
+    }
+
+    if (this.stop_typing_subscription_ref != undefined) {
+      this.stop_typing_subscription_ref.unsubscribe();
+      this.stop_typing_subscription_ref = undefined;
+    }
+
     //Subscribe to listen for users online
     this.users_online_subscription_ref = this._stompService.subscribe(
       '/client/users-online/' + this.selected_dr_id,
@@ -112,6 +128,37 @@ export class DiscussionRoomComponent {
           this.changePage(this.current_page + 1);
         } else {
           this.changePage(this.current_page);
+        }
+      }
+    );
+
+    //Subscribe to typing status
+    this.typing_subscription_ref = this._stompService.subscribe(
+      '/client/typing/' + this.selected_dr_id,
+      (data: any) => {
+        var json = JSON.parse(data.body);
+
+        if (json.username == this.username) {
+          return;
+        }
+
+        if (!this.users_typing.includes(json.username)) {
+          this.users_typing.push(json.username);
+        }
+      }
+    );
+
+    //Subscribe to stop typing status
+    this.stop_typing_subscription_ref = this._stompService.subscribe(
+      '/client/stop-typing/' + this.selected_dr_id,
+      (data: any) => {
+        var json = JSON.parse(data.body);
+
+        if (this.users_typing.includes(json.username)) {
+          var index = this.users_typing.findIndex((a) => a == json.username);
+          if (index != -1) {
+            this.users_typing.splice(index, 1);
+          }
         }
       }
     );
@@ -133,6 +180,16 @@ export class DiscussionRoomComponent {
       this.users_online_subscription_ref = undefined;
     }
 
+    if (this.typing_subscription_ref != undefined) {
+      this.typing_subscription_ref.unsubscribe();
+      this.typing_subscription_ref = undefined;
+    }
+
+    if (this.stop_typing_subscription_ref != undefined) {
+      this.stop_typing_subscription_ref.unsubscribe();
+      this.stop_typing_subscription_ref = undefined;
+    }
+
     this._stompService.cleanUp();
   }
 
@@ -147,6 +204,7 @@ export class DiscussionRoomComponent {
 
     this._discussionRoomService.getRoomsAndMessages().subscribe(
       (data: any) => {
+        this.username = data.customer.username;
         this.discussion_room_list = data.discussion_room_list;
         this.message_list = data.message_list;
 
@@ -180,6 +238,39 @@ export class DiscussionRoomComponent {
               }
             );
 
+            //Subscribe to typing status
+            this.typing_subscription_ref = this._stompService.subscribe(
+              '/client/typing/' + this.selected_dr_id,
+              (data: any) => {
+                var json = JSON.parse(data.body);
+
+                if (json.username == this.username) {
+                  return;
+                }
+
+                if (!this.users_typing.includes(json.username)) {
+                  this.users_typing.push(json.username);
+                }
+              }
+            );
+
+            //Subscribe to cease typing status
+            this.stop_typing_subscription_ref = this._stompService.subscribe(
+              '/client/stop-typing/' + this.selected_dr_id,
+              (data: any) => {
+                var json = JSON.parse(data.body);
+
+                if (this.users_typing.includes(json.username)) {
+                  var index = this.users_typing.findIndex(
+                    (a) => a == json.username
+                  );
+                  if (index != -1) {
+                    this.users_typing.splice(index, 1);
+                  }
+                }
+              }
+            );
+
             //Send a notification that you are online
             this._stompService.send('/server/check-in', {
               dr_id: this.selected_dr_id,
@@ -198,6 +289,22 @@ export class DiscussionRoomComponent {
     this.users_online = JSON.parse(data.body);
   }
 
+  broadcastTypingStatus() {
+    this.new_message = this.new_message.trim();
+
+    if (this.new_message == '') {
+      this._stompService.send('/server/stop-typing', {
+        username: this.username,
+        dr_id: this.selected_dr_id,
+      });
+    } else {
+      this._stompService.send('/server/typing', {
+        username: this.username,
+        dr_id: this.selected_dr_id,
+      });
+    }
+  }
+
   sendMessage() {
     this.new_message = this.new_message.trim();
 
@@ -211,6 +318,7 @@ export class DiscussionRoomComponent {
         (data: any) => {
           if (data.header_rsp == 'ok') {
             this.new_message = '';
+            this.broadcastTypingStatus();
           }
         },
         (error) => {
