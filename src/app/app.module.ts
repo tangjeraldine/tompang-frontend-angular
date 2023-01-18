@@ -30,7 +30,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoginComponent,
     TripComponent,
     RegisterComponent,
-    ErrorComponent
+    ErrorComponent,
     UsersTripListComponent,
     EmailVerificationPgComponent,
     DiscussionRoomComponent
@@ -41,7 +41,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     HttpClientModule,
     LayoutComponentModule,
-    MatFormFieldModule
+    MatFormFieldModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatInputModule,

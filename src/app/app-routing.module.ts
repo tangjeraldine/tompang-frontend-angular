@@ -8,7 +8,6 @@ import { UsersLandingPgComponent } from './users-landing-pg/users-landing-pg.com
 import { EmailVerificationPgComponent } from './email-verification-pg/email-verification-pg.component';
 import { UsersTripListComponent } from './users-trip-list/users-trip-list.component';
 import { DiscussionRoomComponent } from './discussion-room/discussion-room.component';
-
 const routes: Routes = [
   {
     path: '',
