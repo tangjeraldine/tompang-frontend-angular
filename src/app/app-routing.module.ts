@@ -27,10 +27,7 @@ const routes: Routes = [
     path: 'users',
     component: UsersLandingPgComponent,
   },
-  {
-    path: 'trip-list',
-    component: UsersTripListComponent,
-  },
+  { path: 'trips', component: UsersTripListComponent}, 
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'trip', component: TripComponent },

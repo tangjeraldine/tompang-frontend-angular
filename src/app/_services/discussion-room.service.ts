@@ -14,9 +14,9 @@ export class DiscussionRoomService {
   constructor(private http:HttpClient,
               private _authService:AuthenticationService) {} 
 
-  getRooms() {  
+  getRoomsAndMessages() {  
     return this.http.get(this.baseHref + "/customer/discussion-room/list?" + this._authService.generateAuthParamsStr());  
-  } 
+  }  
 
   getMessages(page:any, discussionRmId:string) {
     var params = (new HttpParams())

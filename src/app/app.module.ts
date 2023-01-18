@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { PublicLandingPgComponent } from './public-landing-pg/public-landing-pg.component';
 import { TripComponent } from './trip/trip.component';
-import { AuthenticationService } from './_services/authentication.service';
+import { AuthenticationService } from './_services/authentication.service'; 
 import { RegisterComponent } from './register/register.component';
 import { LayoutComponentModule } from './layout-component/layout-component.module';
 import { ErrorComponent } from './error/error.component';
@@ -17,6 +17,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { CookieService } from 'ngx-cookie-service';
 import { DiscussionRoomComponent } from './discussion-room/discussion-room.component';
 import { StompService } from './_services/stomp.service';
+import { TripService } from './_services/trip.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { StompService } from './_services/stomp.service';
     LayoutComponentModule,
     MatFormFieldModule
   ],
-  providers: [AuthenticationService,CookieService,StompService],
+  providers: [AuthenticationService,CookieService,StompService, TripService],
   bootstrap: [AppComponent] 
 })
 export class AppModule {} 
