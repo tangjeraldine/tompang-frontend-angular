@@ -5,10 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { TripComponent } from './trip/trip.component';
 import { RegisterComponent } from './register/register.component';
 import { PublicLandingPgComponent } from './public-landing-pg/public-landing-pg.component';
-import { UsersLandingPgComponent } from './users-landing-pg/users-landing-pg.component';
-import { ErrorComponent } from './error/error.component';
-import { UsersTripListComponent } from './users-trip-list/users-trip-list.component';
-import { EmailVerificationPgComponent } from './email-verification-pg/email-verification-pg.component';
+import { UsersLandingPgComponent } from './users/users-landing-pg/users-landing-pg.component';
 
 const routes: Routes = [
   {
@@ -34,10 +31,8 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  {
-    path: '**',
-    component: ErrorComponent,
-  },
+  { path: 'trip', component: TripComponent },
+  { path: 'discussion-room', component: DiscussionRoomComponent}
 ];
 
 @NgModule({
