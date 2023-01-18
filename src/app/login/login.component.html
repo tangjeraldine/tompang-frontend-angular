@@ -1,102 +1,120 @@
-<div style="margin: auto">
-  <table style="margin: auto; margin-top: 5rem">
-    <tr>
-      <td colspan="2">
-        <span>Welcome to Tompang!</span>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        (Not a member? <a routerLink="/register">Register</a> now!)
-      </td>
-    </tr>
-    <tr>
-      <td>Email:</td>
-      <td>
-        <input
-          [(ngModel)]="email"
-          [disabled]="isLoading"
-          type="text"
-          maxlength="30"
-          size="30"
-        />
-      </td>
-    </tr>
-    <tr>
-      <td>Password:</td>
-      <td style="width: 65%">
-        <input
-          [(ngModel)]="password"
-          [disabled]="isLoading"
-          type="password"
-          maxlength="20"
-          size="30"
-        />
-      </td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>
-        <input
-          [(ngModel)]="usertype"
-          [disabled]="isLoading"
-          style="margin-left: 0px"
-          type="radio"
-          name="usertype"
-          id="usertype_c"
-          value="customer"
-        />
-        <label
-          for="usertype_c"
-          style="margin-right: 0.2rem; margin-left: 0.2rem"
-          >Customer</label
-        >
-        <input
-          [(ngModel)]="usertype"
-          [disabled]="true"
-          type="radio"
-          name="usertype"
-          id="usertype_a"
-          value="admin"
-        />
-        <label
-          for="usertype_a"
-          style="margin-right: 0.2rem; margin-left: 0.2rem"
-          >Admin</label
-        >
-      </td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>
-        <button
-          mat-raised-button
-          color="primary"
-          [style.display]="this.isLoading ? 'none' : 'inline'"
-          (click)="login()"
-        >
-          Login
-        </button>
-      </td>
-    </tr>
-    <tr *ngIf="errors.length != 0">
-      <td></td>
-      <td style="background-color: lightcoral">
-        <ul *ngIf="this.errors.length > 1; else elseBlock">
-          <li *ngFor="let error of errors">
-            {{ error }}
-          </li>
-        </ul>
-        <ng-template #elseBlock>
-          {{ this.errors[0] }}
-        </ng-template>
-      </td>
-    </tr>
-    <tr *ngIf="success != ''">
-      <td></td>
-      <td style="background-color: #90ee90">
-        {{ success }}
-      </td>
-    </tr>
-  </table>
-</div>
+<section class="relative flex flex-wrap lg:h-screen lg:items-center">
+  <div class="grid place-items-center w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
+    <table class="mt-8 mb-0 max-w-sm">
+      <tr>
+        <td colspan="2" class="text-2xl font-bold sm:text-3xl text-center">
+          <span>Welcome to Tompang!</span>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="mt-4 text-gray-500 text-center">
+          (Not a member? <a class="text-red-500 hover:text-red-700" routerLink="/register">Register</a> now!)
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <input
+            [(ngModel)]="email"
+            [disabled]="isLoading"
+            type="text"
+            maxlength="30"
+            class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg"
+            placeholder="Please enter your email"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <input
+            [(ngModel)]="password"
+            [disabled]="isLoading"
+            type="password"
+            maxlength="20"
+            class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg"
+            placeholder="Please enter your password"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="text-xs text-gray-500 text-center">
+          Forgot your password? Reset it password here. 
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="text-center">
+          <input
+            [(ngModel)]="usertype"
+            [disabled]="isLoading"
+            style="margin-left: 0px"
+            type="radio"
+            name="usertype"
+            id="usertype_c"
+            value="customer"
+            class="accent-rose-500"
+          />
+          <label
+            for="usertype_c"
+            class="px-5"
+            >Customer</label
+          >
+          <input
+            [(ngModel)]="usertype"
+            [disabled]="true"
+            type="radio"
+            name="usertype"
+            id="usertype_a"
+            value="admin"
+            class="accent-rose-500"
+          />
+          <label
+            for="usertype_a"
+            class="px-5"
+            >Admin</label
+          >
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="text-center" >
+          <button
+            [style.display]="this.isLoading ? 'none' : 'inline'"
+            (click)="login()"
+            class="group relative inline-block overflow-hidden border border-orange-500 px-8 py-3 focus:outline-none focus:ring"
+          >
+          <span
+          class="absolute inset-y-0 left-0 w-[2px] bg-red-600 transition-all group-hover:w-full"
+        ></span>
+        <span
+        class="relative text-sm font-medium text-red-500 transition-colors group-hover:text-white"
+      >Login</span>
+          </button>
+        </td>
+      </tr>
+      <tr colspan="2" *ngIf="errors.length != 0">
+        <td class="font-bold text-center">
+          <ul *ngIf="this.errors.length > 1; else elseBlock">
+            <li *ngFor="let error of errors">
+              <p><img class="w-5 mb-1 inline-block" src="../../assets/images/error_symbol.svg" alt="error_symbol"> {{ error }}</p>
+            </li>
+          </ul>
+          <ng-template #elseBlock>
+            {{ this.errors[0] }}
+          </ng-template>
+        </td>
+      </tr>
+      <tr *ngIf="success != ''">
+        <td style="background-color: #90ee90">
+          {{ success }}
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Login Image Display -->
+  <div class="relative h-64 w-full sm:h-96 lg:h-full lg:w-1/2">
+    <img
+      alt="welcome_image"
+      src="../../assets/images/road_bg.jpg"
+      class="absolute inset-0 h-full w-full object-cover"
+    />
+  </div>
+</section>

@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs';
-
+import { CookieService } from 'ngx-cookie-service'; 
+ 
 @Injectable({
+<<<<<<< HEAD
   providedIn: 'root',
 })
 export class AuthenticationService {
@@ -21,6 +23,31 @@ export class AuthenticationService {
 
   isCustomerRole(): boolean {
     return this.role == 'customer';
+=======
+  providedIn: 'root'
+}) 
+export class AuthenticationService {    
+  private role:string = "";
+  private id:string = "";
+  private expiry:string="";
+  private signature:string="";
+
+  baseHref:string = "http://localhost:8080";  
+ 
+  constructor(private http:HttpClient,
+              private _cookieService:CookieService) {}
+  
+  getRole() {
+    return this.role;
+  }
+  
+  isCustomerRole():boolean {
+    return this.role == "customer";
+  } 
+ 
+  isAdminRole():boolean {
+    return this.role == "admin";
+>>>>>>> 1474e144cf1f1825dc93704a1566d0db6384e957
   }
 
   isAdminRole(): boolean {
@@ -31,6 +58,7 @@ export class AuthenticationService {
     return this.id;
   }
 
+<<<<<<< HEAD
   clearCredentials(): void {
     this.role = '';
     this.id = '';
@@ -40,6 +68,26 @@ export class AuthenticationService {
 
   isCredentialsEmpty(): boolean {
     return this.signature == '';
+=======
+  clearCredentials():void {
+    this.role = "";
+    this.id = "";
+    this.expiry = "";
+    this.signature = ""; 
+    this._cookieService.set("header_role", "");
+    this._cookieService.set("header_id", "");
+    this._cookieService.set("header_expiry", "");
+    this._cookieService.set("header_signature", "");
+  }
+
+  isCredentialsEmpty():boolean { 
+    this.role = this._cookieService.get("header_role");
+    this.id = this._cookieService.get("header_id");
+    this.expiry = this._cookieService.get("header_expiry");
+    this.signature = this._cookieService.get("header_signature");
+
+    return (this.signature=="");
+>>>>>>> 1474e144cf1f1825dc93704a1566d0db6384e957
   }
 
   setCredentials(data: any) {
@@ -47,7 +95,16 @@ export class AuthenticationService {
     this.id = data.header_id;
     this.expiry = data.header_expiry;
     this.signature = data.header_signature;
+<<<<<<< HEAD
   }
+=======
+
+    this._cookieService.set("header_role", this.role);
+    this._cookieService.set("header_id", this.id);
+    this._cookieService.set("header_expiry", this.expiry);
+    this._cookieService.set("header_signature", this.signature);
+  }  
+>>>>>>> 1474e144cf1f1825dc93704a1566d0db6384e957
 
   generateAuthParamsStr(): string {
     var paramsStr = new URLSearchParams(this.generateAuthHeaders()).toString();

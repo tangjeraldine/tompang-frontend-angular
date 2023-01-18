@@ -1,14 +1,12 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { LoginComponent } from './login/login.component';
 import { TripComponent } from './trip/trip.component';
 import { RegisterComponent } from './register/register.component';
 import { PublicLandingPgComponent } from './public-landing-pg/public-landing-pg.component';
 import { ErrorComponent } from './error/error.component';
-import { UsersTripListComponent } from './users-trip-list/users-trip-list.component';
 import { EmailVerificationPgComponent } from './email-verification-pg/email-verification-pg.component';
-
+import { DiscussionRoomComponent } from './discussion-room/discussion-room.component';
 const routes: Routes = [
   {
     path: '',
@@ -18,12 +16,10 @@ const routes: Routes = [
     path: 'email-verif',
     component: EmailVerificationPgComponent,
   },
-
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
   {
     path: 'trip',
     component: TripComponent,
+
     children: [
       {
         path: 'trip-list',
@@ -31,10 +27,9 @@ const routes: Routes = [
       },
     ],
   },
-  {
-    path: '**',
-    component: ErrorComponent,
-  },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'discussion-room', component: DiscussionRoomComponent },
 ];
 
 @NgModule({
