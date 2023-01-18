@@ -83,8 +83,7 @@ export class TripComponent implements OnInit {
       role: this.role,
       days: this.days.join(),
       timeOfDay: this.timeOfTheDay,
-    });
-    console.log(this.addNewTrip.value);
+    }); 
     this.addTripServ.addTrip(this.addNewTrip.value).subscribe((data) => {
       console.log('Trip added!');
     });

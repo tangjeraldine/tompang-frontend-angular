@@ -5,7 +5,7 @@ import { TripService } from '../_services/trip.service';
 
 @Component({
   selector: 'app-users-trip-list',
-  templateUrl: './users-trip-list.component.html',
+  templateUrl: './users-trip-list.component.html', 
   styleUrls: ['./users-trip-list.component.css']
 })
 export class UsersTripListComponent {
