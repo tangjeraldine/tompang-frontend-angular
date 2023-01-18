@@ -22,8 +22,8 @@ export class UsersTripListComponent {
   edit_from_postal_error = "";
   edit_to_postal_error = "";
   edit_description_error = "";
-  edit_days_error = "";
-
+  edit_days_error = ""; 
+  
   constructor(private router:Router,
               private _tripService:TripService,
               private _authService:AuthenticationService) {}

@@ -22,7 +22,7 @@
         </tr>
         <tr *ngFor="let msg of this.message_list">
             <td>@{{msg.customer.username}}</td>
-            <td>{{msg.date}}</td>
+            <td>{{msg.longDate | date:'short'}}</td>
             <td style="width: 65%;">
                 <span *ngIf="msg.fileMessage">
                     @{{msg.customer.username}} uploaded
@@ -40,15 +40,25 @@
 
             <td colspan="2">
 
-                <small>Users currently online: 
+                <small>
+                    
+                    LIVE users currently online:  
                     <span *ngFor="let i of this.users_online;last as last">
                         @{{i}}<span *ngIf="!last">, </span>
                     </span>
-                </small>
+                    <br><br>
+                    <span *ngIf="this.users_typing.length > 0">
+                        <span *ngFor="let i of this.users_typing;last as last">
+                            @{{i}}<span *ngIf="!last">, </span>
+                        </span> is/are typing...
+                    </span>
 
+                </small>  
             </td>
             <td>
-                <textarea style="width: 80%; resize: none;" [(ngModel)]="new_message"></textarea>
+                <textarea style="width: 80%; resize: none;" maxlength="150"
+                 [(ngModel)]="new_message" 
+                 (keyup)="broadcastTypingStatus()"></textarea>
                 <br>
                 <button (click)="sendMessage()">Send</button>
             </td>
