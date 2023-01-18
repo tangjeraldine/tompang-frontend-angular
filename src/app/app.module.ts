@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +14,6 @@ import { LayoutComponentModule } from './layout-component/layout-component.modul
 import { ErrorComponent } from './error/error.component';
 import { UsersTripListComponent } from './users-trip-list/users-trip-list.component';
 import { EmailVerificationPgComponent } from './email-verification-pg/email-verification-pg.component';
-
 
 @NgModule({
   declarations: [
@@ -32,6 +32,7 @@ import { EmailVerificationPgComponent } from './email-verification-pg/email-veri
     FormsModule,
     HttpClientModule,
     LayoutComponentModule,
+    ReactiveFormsModule,
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent],
