@@ -1,7 +1,30 @@
-<table>
-    <tr>
-        <td>
+<!---->
 
-        </td>
-    </tr>
-</table>
+<div style="width: 80%;">
+    <table style="width: 100%; border: 1px solid;">
+        <tr>
+            <td>Username </td>
+            <td>From postal code</td>
+            <td>To postal code</td>
+            <td>Description</td>
+            <td>Role</td>
+            <td>Days I am looking for</td>
+            <td>Time of day</td>
+            <td></td>
+        </tr>
+        <ng-container *ngFor="let t of this.sameDestTrips;index as i">
+           <!-- <ng-container *ngIf="i==this.edit_row_index;else elseBlock">-->
+                <tr>
+                    <td>{{t.customer.username}}</td>
+                    <td>{{t.fromPostal}}</td>
+                    <td>{{t.fromPostal}}</td>
+                    <td>{{t.toPostal}}</td>                    
+                    <td>{{t.description}}</td>
+                    <td>{{t.role}}</td>
+                    <td>{{t.days}}</td>
+                    <td>{{t.timeOfDay}}</td>
+        </ng-container>  
+    </table> 
+
+</div>
+<app-header-user></app-header-user>
