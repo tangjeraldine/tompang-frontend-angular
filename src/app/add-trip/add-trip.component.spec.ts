@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UsersLandingPgComponent } from './users-landing-pg.component';
+import { AddTripComponent } from './add-trip.component';
 
-describe('UsersLandingPgComponent', () => {
-  let component: UsersLandingPgComponent;
-  let fixture: ComponentFixture<UsersLandingPgComponent>;
+describe('AddTripComponent', () => {
+  let component: AddTripComponent;
+  let fixture: ComponentFixture<AddTripComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UsersLandingPgComponent ]
+      declarations: [ AddTripComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(UsersLandingPgComponent);
+    fixture = TestBed.createComponent(AddTripComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
