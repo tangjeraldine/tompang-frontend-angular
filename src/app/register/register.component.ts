@@ -30,6 +30,7 @@ export class RegisterComponent implements OnInit{
       return;
      }
     alert("Working")
+
   }
 }
 export const passwordConfirmValidatior: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
