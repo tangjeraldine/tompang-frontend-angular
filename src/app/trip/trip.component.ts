@@ -8,6 +8,7 @@ import {
 import { Router } from '@angular/router';
 import { AddTripService } from '../_services/add-trip.service';
 import { AuthenticationService } from '../_services/authentication.service';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-trip',
@@ -36,18 +37,21 @@ export class TripComponent implements OnInit {
   changeRole1() {
     this.role = 2;
     // console.log(this.role);
+    this.scroller.scrollToAnchor('formTarget');
   }
 
   changeRole2() {
     this.role = 1;
     // console.log(this.role);
+    this.scroller.scrollToAnchor('formTarget');
   }
 
   constructor(
     private addNewTripFB: FormBuilder,
     private _authService: AuthenticationService,
     private addTripServ: AddTripService,
-    private router: Router
+    private router: Router,
+    private scroller: ViewportScroller
   ) {}
 
   monday(i: number) {

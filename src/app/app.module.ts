@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { PublicLandingPgComponent } from './public-landing-pg/public-landing-pg.component';
 import { TripComponent } from './trip/trip.component';
-import { AuthenticationService } from './_services/authentication.service'; 
+import { AuthenticationService } from './_services/authentication.service';
 import { RegisterComponent } from './register/register.component';
 import { MatInputModule } from '@angular/material/input';
 import { LayoutComponentModule } from './layout-component/layout-component.module';
@@ -37,7 +37,7 @@ import { ListUsersWithSameDestinationComponent } from './list-users-with-same-de
     EmailVerificationPgComponent,
     DiscussionRoomComponent,
     AddTripComponent,
-    ListUsersWithSameDestinationComponent
+    ListUsersWithSameDestinationComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +51,7 @@ import { ListUsersWithSameDestinationComponent } from './list-users-with-same-de
     MatInputModule,
     BrowserAnimationsModule,
   ],
-  providers: [AuthenticationService,CookieService,StompService, TripService],
-  bootstrap: [AppComponent] 
+  providers: [AuthenticationService, CookieService, StompService, TripService],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
