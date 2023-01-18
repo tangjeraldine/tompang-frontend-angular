@@ -4,7 +4,10 @@
       <div class="md:flex md:items-center md:gap-12">
         <a class="block w-2/4" href=" ">
           <span class="sr-only">Home</span>
-          <img src="../../../assets/images/TOMPANG_NoBg_2.png" alt="company_logo">
+          <img
+            src="../../../assets/images/TOMPANG_NoBg_2.png"
+            alt="company_logo"
+          />
         </a>
       </div>
 
@@ -33,12 +36,12 @@
           </a>
 
           <div class="hidden sm:flex">
-            <a
+            <button
               class="rounded-md bg-white px-5 py-2.5 text-sm font-medium text-red-600 shadow hover:text-red-700 hover:bg-slate-300 focus:outline-none focus:ring active:text-red-500"
-              href="/"
+              (click)="logOut()" 
             >
               Log Out
-            </a>
+          </button>
           </div>
         </div>
 
