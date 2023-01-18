@@ -15,8 +15,23 @@ export class AddTripService {
 
   addTrip(trip: any) {
     var auth_params = this.authService.generateAuthHeaders();
+    let formData = new FormData();
+    formData.append('fromPostal', trip.fromPostal);
+    formData.append('toPostal', trip.toPostal);
+    formData.append('role', trip.role);
+    formData.append('days', trip.days);
+    formData.append('timeOfDay', trip.timeOfDay);
+    formData.append('description', trip.description);
+    formData.append('header_id', auth_params['header_id']);
+    formData.append('header_role', auth_params['header_role']);
+    formData.append('header_expiry', auth_params['header_expiry']);
+    formData.append('header_signature', auth_params['header_signature']);
+
     const customerId = auth_params['header_id'];
 
-    return this.httpClient.post(`${this.baseURL}/addTrip/${customerId}`, trip);
+    return this.httpClient.post(
+      `${this.baseURL}/addTrip/${customerId}`,
+      formData
+    );
   }
 }
