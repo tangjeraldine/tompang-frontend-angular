@@ -24,6 +24,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddTripComponent } from './add-trip/add-trip.component';
 import { ListUsersWithSameDestinationComponent } from './list-users-with-same-destination/list-users-with-same-destination.component';
+import { SendEmailComponent } from './send-email/send-email.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ListUsersWithSameDestinationComponent } from './list-users-with-same-de
     DiscussionRoomComponent,
     AddTripComponent,
     ListUsersWithSameDestinationComponent,
+    SendEmailComponent,
   ],
   imports: [
     BrowserModule,
