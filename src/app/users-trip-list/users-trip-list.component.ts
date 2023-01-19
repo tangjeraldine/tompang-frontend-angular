@@ -182,6 +182,7 @@ export class UsersTripListComponent {
   }
 
   parseToDaysStr(daysStr:string) { 
+
     var str = "";
     for(let i=0; i<daysStr.length; i++) {
       if(daysStr.charAt(i)=='1'){
@@ -207,14 +208,17 @@ export class UsersTripListComponent {
       } 
 
       if(i != (daysStr.length-1)) {
+
         str +=", ";
       }
     }
 
     return str;
+
   }
 
   findUsers() {
+    this.router.navigate
     
   }
 }
