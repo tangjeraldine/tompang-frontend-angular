@@ -25,6 +25,7 @@ export class SendEmailComponent {
       this.router.navigate(['login', {expired: '1'}]);
       return;
     }
+    
   }
 
   send() {

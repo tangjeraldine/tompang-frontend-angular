@@ -36,7 +36,7 @@ export class LoginComponent {
     }
   }
 
-  login(): void {
+  login(): void {  
     this.errors = [];
     this.email = this.email.trim().toLowerCase();
 
