@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from '../_services/authentication.service';
 import { EmailService } from '../_services/email.service';
 
 @Component({
@@ -10,14 +11,20 @@ import { EmailService } from '../_services/email.service';
 export class SendEmailComponent {
   
   email_to_id="";
-  email_to_username="";
+  email_to_username="kevintian";
   message="";
   error="";
 
   constructor(private emailService:EmailService, 
-              private activatedRoute:ActivatedRoute) {}
+              private activatedRoute:ActivatedRoute,
+              private router:Router,
+              private _authService:AuthenticationService) {}
 
   ngOnInit() {
+    if(this._authService.isCredentialsEmpty() || !this._authService.isCustomerRole()) {
+      this.router.navigate(['login', {expired: '1'}]);
+      return;
+    }
     
   }
 

@@ -36,14 +36,45 @@ export class ListUsersWithSameDestinationComponent implements OnInit{
       // alert('hello')
       this.sameDestTrips=data
     })
-
-
   }
 
   sendEmail(id:any) {
     this.router.navigate(['/email'], id)
-
   }
 
+  parseToDaysStr(daysStr:string) { 
+    let dayNumber = daysStr.split('');
+    console.log(dayNumber);
+    let str=''
 
+    for(let i=0; i<dayNumber.length; i++) {
+      if(dayNumber[i]=='1'){
+        str+="Monday ";
+      }
+      else if(dayNumber[i]=='2'){
+        str += "Tuesday ";
+      }
+      else if(dayNumber[i]=='3'){
+        str += "Wednesday ";
+      }
+      else if(dayNumber[i]=='4'){
+        str += "Thursday ";
+      }
+      else if(dayNumber[i]=='5'){
+        str += "Friday ";
+      }
+      else if(dayNumber[i]=='6'){
+        str += "Saturday ";
+      }
+      else if(dayNumber[i]=='7'){
+        str += "Sunday ";
+      } 
+
+      else if(i != (dayNumber.length-1)) {
+        str +=", ";
+      }
+    }
+
+    return str;
+  }
 }

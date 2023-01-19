@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from '../_services/authentication.service';
 import { CustomerService } from '../_services/customer.service';
+import { EmailService } from '../_services/email.service';
 
 @Component({
   selector: 'app-email',
@@ -9,16 +12,32 @@ import { CustomerService } from '../_services/customer.service';
 })
 export class EmailComponent implements OnInit{
 
-  id!:number;
+  toCustomerId!:number;
   toCustomer:any
+  userId!:number;
   user:any
+  addNewEmail!: FormGroup;
+  message:any
+  
 
-  constructor(private customerService: CustomerService, private route:ActivatedRoute, private router:Router) {}
+  constructor(private authService:AuthenticationService, private emailService: EmailService, private route:ActivatedRoute, private router:Router, private addNewEmailFB: FormBuilder,) {}
   ngOnInit(): void {
-    this.id=this.route.snapshot.params['id']
-    this.customerService.getCustomerById(this.id).subscribe(data=>{
-      this.toCustomer=data;
+    this.toCustomerId=this.route.snapshot.params['id']
+
+
+    this.userId=this.authService.generateAuthHeaders()['header_id'];
+
+
+    this.addNewEmail = this.addNewEmailFB.group({
+      message: new FormControl('',Validators.required),
+    });
+  }
+
+  sendEmail() {
+    this.emailService.sendEmail(this.toCustomerId,this.addNewEmail.value.message).subscribe(data=>{
+      alert('Email Sent!')
     })
+
 
   }
 

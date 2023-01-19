@@ -1,0 +1,27 @@
+<form
+[formGroup]="addNewEmail"
+(submit)="sendEmail()"
+class="mx-auto mt-8 max-w-md mb-0 space-y-4 rounded-lg p-8 shadow-2xl"
+>
+
+
+<div>
+  <label  class="sr-only">To</label>
+  <div class="relative">
+    <input
+      formControlName="message"
+      type="text"
+      class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
+      placeholder="Send the meesage to your fellow user..."
+    />
+    <br />
+  </div>
+</div>
+
+  <button
+    class="ml-3 inline-block rounded-lg bg-red-700 px-5 py-3 text-sm font-medium text-white"
+    [disabled]="!addNewEmail.valid"
+  >
+    Send Email
+  </button>
+</form>
