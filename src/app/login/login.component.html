@@ -1,5 +1,7 @@
 <section class="relative flex flex-wrap lg:h-screen lg:items-center">
-  <div class="grid place-items-center w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
+  <div
+    class="grid place-items-center w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24"
+  >
     <table class="mt-8 mb-0 max-w-sm">
       <tr>
         <td colspan="2" class="text-2xl font-bold sm:text-3xl text-center">
@@ -8,7 +10,11 @@
       </tr>
       <tr>
         <td colspan="2" class="mt-4 text-gray-500 text-center">
-          (Not a member? <a class="text-red-500 hover:text-red-700" routerLink="/register">Register</a> now!)
+          (Not a member?
+          <a class="text-red-500 hover:text-red-700" routerLink="/register"
+            >Register</a
+          >
+          now!)
         </td>
       </tr>
       <tr>
@@ -19,7 +25,7 @@
             type="text"
             maxlength="30"
             class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg"
-            placeholder="Please enter your email"
+            placeholder="Email"
           />
         </td>
       </tr>
@@ -31,13 +37,13 @@
             type="password"
             maxlength="20"
             class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg"
-            placeholder="Please enter your password"
+            placeholder="Password"
           />
         </td>
       </tr>
       <tr>
         <td colspan="2" class="text-xs text-gray-500 text-center">
-          Forgot your password? Reset it password here. 
+          Forgot your password? Reset it here.
         </td>
       </tr>
       <tr>
@@ -52,11 +58,7 @@
             value="customer"
             class="accent-rose-500"
           />
-          <label
-            for="usertype_c"
-            class="px-5"
-            >Customer</label
-          >
+          <label for="usertype_c" class="px-5">Customer</label>
           <input
             [(ngModel)]="usertype"
             [disabled]="true"
@@ -66,35 +68,32 @@
             value="admin"
             class="accent-rose-500"
           />
-          <label
-            for="usertype_a"
-            class="px-5"
-            >Admin</label
-          >
+          <label for="usertype_a" class="px-5">Admin</label>
         </td>
       </tr>
       <tr>
-        <td class="text-center" >
+        <td class="text-center">
           <button
             [style.display]="this.isLoading ? 'none' : 'inline'"
             (click)="login()"
             class="inline-block rounded bg-red-500 px-8 py-3 transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-red-700"
           >
-        <span
-        class="relative text-sm font-medium text-white transition-colors group-hover:text-amber-500"
-      >Login</span>
+            <span
+              class="relative text-sm font-medium text-white transition-colors group-hover:text-amber-500"
+              >Login</span
+            >
           </button>
         </td>
         <td>
           <button
-          class="inline-block rounded border border-red-500 px-8 py-3 transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-red-700"
-          routerLink="/home"
-        >
-          <span
-            class="relative text-sm font-medium text-red-500 transition-colors"
-            >Back to Home</span
+            class="inline-block rounded border border-red-500 px-8 py-3 transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-red-700"
+            routerLink="/home"
           >
-        </button>
+            <span
+              class="relative text-sm font-medium text-red-500 transition-colors"
+              >Back to Home</span
+            >
+          </button>
         </td>
       </tr>
       <tr colspan="2" *ngIf="errors.length != 0">
@@ -102,10 +101,23 @@
           <ul *ngIf="this.errors.length > 1; else elseBlock">
             <li *ngFor="let error of errors">
               <p class="text-red-500">
-                <svg class="w-5 mb-1 inline-block" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path>
+                <svg
+                  class="w-5 mb-1 inline-block"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"
+                  ></path>
                 </svg>
-                {{ error }}</p>
+                {{ error }}
+              </p>
             </li>
           </ul>
           <ng-template #elseBlock>

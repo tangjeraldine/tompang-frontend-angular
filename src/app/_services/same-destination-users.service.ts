@@ -23,8 +23,10 @@ export class SameDestinationUsersService {
     }
 
     var paramsStr = (new URLSearchParams(params)).toString();
+    var get = this.baseURL + "/trip/getTripSameDest?"+paramsStr+'&'+this.authService.generateAuthParamsStr();
+    // alert(get)
 
-    return this.httpClient.get(`${this.baseURL}/trip/getTripSameDest?`+paramsStr+'&'+this.authService.generateAuthParamsStr());
+    return this.httpClient.get(get);
 
   }
 
