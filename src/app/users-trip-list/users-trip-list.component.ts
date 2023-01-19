@@ -187,36 +187,39 @@ export class UsersTripListComponent {
   }
 
   parseToDaysStr(daysStr:string) { 
-    var days = daysStr.split(",");
-    var str = "";
-    for(let i=0; i<days.length; i++) {
-      if(days[i]=='1'){
-        str += "Monday";
+    let dayNumber = daysStr.split('');
+    console.log(dayNumber);
+    let str=''
+
+    for(let i=0; i<dayNumber.length; i++) {
+      if(dayNumber[i]=='1'){
+        str+="Monday ";
       }
-      else if(days[i]=='2'){
-        str += "Tuesday";
+      else if(dayNumber[i]=='2'){
+        str += "Tuesday ";
       }
-      else if(days[i]=='3'){
-        str += "Wednesday";
+      else if(dayNumber[i]=='3'){
+        str += "Wednesday ";
       }
-      else if(days[i]=='4'){
-        str += "Thurday";
+      else if(dayNumber[i]=='4'){
+        str += "Thursday ";
       }
-      else if(days[i]=='5'){
-        str += "Friday";
+      else if(dayNumber[i]=='5'){
+        str += "Friday ";
       }
-      else if(days[i]=='6'){
-        str += "Saturday";
+      else if(dayNumber[i]=='6'){
+        str += "Saturday ";
       }
-      else if(days[i]=='7'){
-        str += "Sunday";
+      else if(dayNumber[i]=='7'){
+        str += "Sunday ";
       } 
 
-      if(i != (days.length-1)) {
+      else if(i != (dayNumber.length-1)) {
         str +=", ";
       }
     }
 
     return str;
+
   }
 }
