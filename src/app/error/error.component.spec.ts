@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-<<<<<<<< HEAD:src/app/error/error.component.spec.ts
 import { ErrorComponent } from './error.component';
 
 describe('ErrorComponent', () => {
@@ -14,7 +13,7 @@ describe('ErrorComponent', () => {
     .compileComponents();
 
     fixture = TestBed.createComponent(ErrorComponent);
-========
+
 import { HeaderUserComponent } from './header-user.component';
 
 describe('HeaderUserComponent', () => {
@@ -28,7 +27,7 @@ describe('HeaderUserComponent', () => {
     .compileComponents();
 
     fixture = TestBed.createComponent(HeaderUserComponent);
->>>>>>>> 5e1980d91d443a9d16b387af7155f7d2c57008ba:src/app/layout-component/header-user/header-user.component.spec.ts
+
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -36,4 +35,4 @@ describe('HeaderUserComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-});
+}
