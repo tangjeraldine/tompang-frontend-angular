@@ -9,10 +9,7 @@ import { EmailVerificationPgComponent } from './email-verification-pg/email-veri
 import { DiscussionRoomComponent } from './discussion-room/discussion-room.component';
 import { UsersTripListComponent } from './users-trip-list/users-trip-list.component';
 const routes: Routes = [
-  {
-    path: 'viewUserWithSameDest/:fromPost/toPost',
-    component: PublicLandingPgComponent,
-  },
+
   {
     path: '',
     component: PublicLandingPgComponent,
