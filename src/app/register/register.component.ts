@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,FormControl, Validators, ValidationErrors, AbstractControl, ValidatorFn } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from '../_services/authentication.service';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +11,9 @@ import { FormBuilder, FormGroup,FormControl, Validators, ValidationErrors, Abstr
 export class RegisterComponent implements OnInit{
   registerForm:FormGroup= new FormGroup({})
 
-  constructor(private formBuilder:FormBuilder){}
+  constructor(private formBuilder:FormBuilder,    private _authService: AuthenticationService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute){}
 
   ngOnInit(): void {
     this.registerForm=this.formBuilder.group({
@@ -30,7 +34,15 @@ export class RegisterComponent implements OnInit{
       return;
      }
     alert("Working")
-
+    this._authService
+    .register(this.registerForm.value)
+    .subscribe(
+      (data: any) => {
+        this._authService.setCredentials(data);
+        this.router.navigate(['/login']);
+        return;
+      }
+    );
   }
 }
 export const passwordConfirmValidatior: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
