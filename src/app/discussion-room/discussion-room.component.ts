@@ -289,10 +289,8 @@ export class DiscussionRoomComponent {
     this.users_online = JSON.parse(data.body);
   }
 
-  broadcastTypingStatus() {
-    this.new_message = this.new_message.trim();
-
-    if (this.new_message == '') {
+  broadcastTypingStatus() { 
+    if (this.new_message.trim() == '') {
       this._stompService.send('/server/stop-typing', {
         username: this.username,
         dr_id: this.selected_dr_id,

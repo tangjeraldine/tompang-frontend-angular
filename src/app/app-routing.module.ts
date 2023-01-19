@@ -9,6 +9,7 @@ import { EmailVerificationPgComponent } from './email-verification-pg/email-veri
 import { DiscussionRoomComponent } from './discussion-room/discussion-room.component';
 import { UsersTripListComponent } from './users-trip-list/users-trip-list.component';
 import { ListUsersWithSameDestinationComponent } from './list-users-with-same-destination/list-users-with-same-destination.component';
+import { SendEmailComponent } from './send-email/send-email.component';
 const routes: Routes = [
 
   {
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'discussion-room', component: DiscussionRoomComponent },
+  { path: 'send-email', component: SendEmailComponent},
   {
     path: '**',
     component: ErrorComponent,
