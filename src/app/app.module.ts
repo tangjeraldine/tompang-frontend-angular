@@ -22,10 +22,8 @@ import { StompService } from './_services/stomp.service';
 import { TripService } from './_services/trip.service';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AddTripComponent } from './add-trip/add-trip.component';
 import { ListUsersWithSameDestinationComponent } from './list-users-with-same-destination/list-users-with-same-destination.component';
 import { EmailComponent } from './email/email.component';
-
 
 @NgModule({
   declarations: [
@@ -38,7 +36,6 @@ import { EmailComponent } from './email/email.component';
     UsersTripListComponent,
     EmailVerificationPgComponent,
     DiscussionRoomComponent,
-    AddTripComponent,
     ListUsersWithSameDestinationComponent,
     EmailComponent,
   ],
