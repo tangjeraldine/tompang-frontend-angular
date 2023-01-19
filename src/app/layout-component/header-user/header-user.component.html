@@ -10,58 +10,37 @@
           />
         </a>
       </div>
-
-      <div class="hidden md:block">
-        <nav aria-label="Site Nav">
-          <ul class="flex items-center gap-6 text-sm">
-            <li>
-              <a class="text-gray-100 transition hover:text-red-300" href="/">
-                My Trip List
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-
-      <div class="flex items-center gap-4">
-        <div class="sm:flex sm:gap-4">
-          <a
-            class="rounded-md bg-red-600 px-5 py-2.5 text-sm font-medium text-white shadow hover:bg-red-700 focus:outline-none focus:ring active:bg-red-500"
-            href="/trips"
+      <div class="flex flex-row gap-2">
+        <!-- Discussion Room -->
+        <a
+          href="/discussion-room"
+          class="rounded-md bg-white px-5 py-2.5 text-sm font-medium shadow hover:bg-slate-300 focus:outline-none focus:ring w-24"
+        >
+          <svg
+            class="w-6 h-6 mx-auto"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="#DC2626"
+            viewBox="0 0 24 24"
           >
-            All Trips
-          </a>
-
-          <div class="hidden sm:flex">
-            <button
-              class="rounded-md bg-white px-5 py-2.5 text-sm font-medium text-red-600 shadow hover:text-red-700 hover:bg-slate-300 focus:outline-none focus:ring active:text-red-500"
-              (click)="logOut()"
-            >
-              Log Out
-            </button>
-          </div>
-        </div>
-
-        <div class="block md:hidden">
-          <button
-            class="rounded bg-gray-500 p-2 text-gray-100 transition hover:text-red-300"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
-        </div>
+            <path
+              d="M19.73,16.663A3.467,3.467,0,0,0,20.5,14.5a3.5,3.5,0,0,0-7,0,3.467,3.467,0,0,0,.77,2.163A6.04,6.04,0,0,0,12,18.69a6.04,6.04,0,0,0-2.27-2.027A3.467,3.467,0,0,0,10.5,14.5a3.5,3.5,0,0,0-7,0,3.467,3.467,0,0,0,.77,2.163A6,6,0,0,0,1,22a1,1,0,0,0,1,1H22a1,1,0,0,0,1-1A6,6,0,0,0,19.73,16.663ZM7,13a1.5,1.5,0,1,1-1.5,1.5A1.5,1.5,0,0,1,7,13ZM3.126,21a4,4,0,0,1,7.748,0ZM17,13a1.5,1.5,0,1,1-1.5,1.5A1.5,1.5,0,0,1,17,13Zm-3.874,8a4,4,0,0,1,7.748,0ZM6,2V8A1,1,0,0,0,7,9H9.865l1.367,1.641a1,1,0,0,0,1.536,0L14.135,9H17a1,1,0,0,0,1-1V2a1,1,0,0,0-1-1H7A1,1,0,0,0,6,2ZM8,3h8V7H13.667a1,1,0,0,0-.769.359L12,8.438l-.9-1.079A1,1,0,0,0,10.333,7H8Z"
+            />
+          </svg>
+        </a>
+        <!-- All Trips -->
+        <a
+          class="rounded-md bg-red-600 px-5 py-2.5 text-sm font-medium text-white shadow-lg hover:bg-red-700 focus:outline-none focus:ring active:bg-red-500 w-24"
+          href="/trips"
+        >
+          All Trips
+        </a>
+        <!-- Log Out -->
+        <button
+          class="rounded-md bg-white px-5 py-2.5 text-sm font-medium text-red-600 shadow hover:text-red-700 hover:bg-slate-300 focus:outline-none focus:ring active:text-red-500 w-24"
+          (click)="logOut()"
+        >
+          Log Out
+        </button>
       </div>
     </div>
   </div>

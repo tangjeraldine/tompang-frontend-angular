@@ -33,7 +33,6 @@
       </svg>
     </button>
   </div>
-
   <table class="min-w-full divide-y divide-gray-200 text-sm">
     <thead class="bg-gray-100">
       <tr class="text-center">
@@ -92,7 +91,21 @@
               {{ this.parseToDaysStr(t.days) }}
             </td>
             <td>
-              {{ this.parseTimeOfDay(t.timeOfDay) }}
+              <span
+                class="inline-flex items-center justify-center rounded-full bg-yellow-100 px-2.5 py-0.5 text-yellow-700"
+                *ngIf="t.timeOfDay == '1'"
+                >Morning</span
+              >
+              <span
+                class="inline-flex items-center justify-center rounded-full bg-blue-100 px-2.5 py-0.5 text-blue-700"
+                *ngIf="t.timeOfDay == '2'"
+                >Afternoon</span
+              >
+              <span
+                class="inline-flex items-center justify-center rounded-full bg-orange-100 px-2.5 py-0.5 text-orange-700"
+                *ngIf="t.timeOfDay == '3'"
+                >Evening</span
+              >
             </td>
             <td>
               <div class="lg:inline-block text-center">
@@ -130,7 +143,11 @@
                     />
                   </svg>
                 </button>
-                <button (click)="findUsers()">
+                <button
+                  (click)="
+                    findUsers(t.fromPostal, t.toPostal, t.days, t.timeOfDay)
+                  "
+                >
                   <!-- USER GROUP BUTTON -->
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
