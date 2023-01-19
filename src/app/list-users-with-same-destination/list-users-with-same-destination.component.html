@@ -1,5 +1,5 @@
-<!---->
 
+<app-header-user></app-header-user>
 <div style="width: 80%;">
     <table style="width: 100%; border: 1px solid;">
         <tr>
@@ -13,7 +13,6 @@
             <td></td>
         </tr>
         <ng-container *ngFor="let t of this.sameDestTrips;index as i">
-           <!-- <ng-container *ngIf="i==this.edit_row_index;else elseBlock">-->
                 <tr>
                     <td>{{t.customer.username}}</td>
                     <td>{{t.fromPostal}}</td>
@@ -23,8 +22,9 @@
                     <td>{{t.role}}</td>
                     <td>{{t.days}}</td>
                     <td>{{t.timeOfDay}}</td>
+                    <td><button (click)="sendEmail(t.customer.id)">Send Email</button></td>
         </ng-container>  
     </table> 
 
 </div>
-<app-header-user></app-header-user>
+<app-footer></app-footer>

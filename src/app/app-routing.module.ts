@@ -9,8 +9,12 @@ import { EmailVerificationPgComponent } from './email-verification-pg/email-veri
 import { DiscussionRoomComponent } from './discussion-room/discussion-room.component';
 import { UsersTripListComponent } from './users-trip-list/users-trip-list.component';
 import { ListUsersWithSameDestinationComponent } from './list-users-with-same-destination/list-users-with-same-destination.component';
+import { EmailComponent } from './email/email.component';
 const routes: Routes = [
-
+  {
+    path: 'email/:id',
+    component: EmailComponent,
+  },
   {
     path: 'users-same-destination/:fromPostal/:toPostal/:days/:timeofday',
     component: ListUsersWithSameDestinationComponent,
