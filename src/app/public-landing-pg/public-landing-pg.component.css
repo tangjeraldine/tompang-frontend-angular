@@ -19,3 +19,13 @@
 .piggy_bank-logo, .friends-logo {
   max-width: 35%;
 }
+
+.attribute-text {
+  font-size: 0.35rem;
+}
+
+@media (max-width: 768px) {
+  .custom_media {
+    order: -9999;
+  }
+}

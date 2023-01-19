@@ -1,25 +1,25 @@
+<app-header-user></app-header-user>
 <section
   class="relative bg-[url(https://images.pexels.com/photos/7464537/pexels-photo-7464537.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)] bg-cover bg-center bg-no-repeat"
 >
   <div
-    class="absolute inset-0 bg-white/75 sm:bg-transparent sm:bg-gradient-to-r sm:from-white/50 sm:to-white/10"
+    class="absolute inset-0 bg-white/75 sm:bg-transparent sm:bg-gradient-to-r sm:from-white/70 sm:to-white/40"
   ></div>
 
   <div
     class="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8"
   >
     <div class="max-w-xl text-center sm:text-left">
-      <div>
+      <div class="mb-12">
         <h2 class="sr-only">Steps</h2>
-
         <div>
           <div class="overflow-hidden rounded-full bg-gray-200">
             <div class="h-2 w-1/2 rounded-full bg-blue-500"></div>
           </div>
 
           <ol class="mt-4 grid grid-cols-3 text-sm font-medium text-gray-500">
-            <li class="flex items-center justify-start text-blue-600">
-              <span class="hidden sm:inline"> What you're looking for </span>
+            <li class="flex items-center justify-start text-blue-800">
+              <span class="hidden sm:inline"> New Friends </span>
 
               <svg
                 class="h-6 w-6 sm:ml-2 sm:h-5 sm:w-5"
@@ -38,7 +38,7 @@
             </li>
 
             <li class="flex items-center justify-center text-blue-600">
-              <span class="hidden sm:inline"> From </span>
+              <span class="hidden sm:inline"> From Here </span>
 
               <svg
                 class="h-6 w-6 sm:ml-2 sm:h-5 sm:w-5"
@@ -61,8 +61,8 @@
               </svg>
             </li>
 
-            <li class="flex items-center justify-end">
-              <span class="hidden sm:inline"> Going to... </span>
+            <li class="flex items-center justify-end text-blue-200">
+              <span class="hidden sm:inline"> To Anywhere </span>
 
               <svg
                 class="h-6 w-6 sm:ml-2 sm:h-5 sm:w-5"
@@ -115,9 +115,12 @@
     </div>
   </div>
 </section>
-<hr />
 
-<div *ngIf="role" class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+<div
+  id="formTarget"
+  *ngIf="role"
+  class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8"
+>
   <div class="mx-auto max-w-lg text-center">
     <h1 class="text-2xl font-bold sm:text-3xl">Locate Your Carpool Tribe:</h1>
 
@@ -127,9 +130,13 @@
     </p>
   </div>
 
-  <form [formGroup]="addNewTrip" class="mx-auto mt-8 mb-0 max-w-md space-y-4">
+  <form
+    [formGroup]="addNewTrip"
+    (submit)="addNewTripDetails()"
+    class="mx-auto mt-8 max-w-md mb-0 space-y-4 rounded-lg p-8 shadow-2xl"
+  >
     <div>
-      <input type="text" hidden class="sr-only" formControlName="roleType" />
+      <input type="text" hidden class="sr-only" formControlName="role" />
       <label for="email" class="sr-only">From</label>
 
       <div class="relative">
@@ -151,36 +158,11 @@
         <small
           *ngIf="
             addNewTrip.controls['fromPostCode'].errors &&
-            addNewTrip.controls['fromPostCode'].hasError('minlength')
+            addNewTrip.controls['fromPostCode'].hasError('pattern')
           "
           class="text-red-500"
           >Postal codes must be exactly 6 digits long.</small
         >
-        <small
-          *ngIf="
-            addNewTrip.controls['fromPostCode'].errors &&
-            addNewTrip.controls['fromPostCode'].hasError('maxlength')
-          "
-          class="text-red-500"
-          >Postal codes must be exactly 6 digits long.</small
-        >
-
-        <span class="absolute inset-y-0 right-4 inline-flex items-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 text-gray-400"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
-            />
-          </svg>
-        </span>
       </div>
     </div>
 
@@ -190,6 +172,7 @@
         <input
           formControlName="toPostCode"
           type="text"
+          (keyup)="samePostalCode()"
           class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
           placeholder="Where you're alighting"
         />
@@ -200,67 +183,132 @@
             addNewTrip.controls['toPostCode'].hasError('required')
           "
           class="text-red-500"
-          >A starting postal code is required.</small
+          >A destination postal code is required.</small
         >
         <small
           *ngIf="
             addNewTrip.controls['toPostCode'].errors &&
-            addNewTrip.controls['toPostCode'].hasError('minlength')
+            addNewTrip.controls['toPostCode'].hasError('pattern')
           "
           class="text-red-500"
           >Postal codes must be exactly 6 digits long.</small
         >
-        <small
-          *ngIf="
-            addNewTrip.controls['toPostCode'].errors &&
-            addNewTrip.controls['toPostCode'].hasError('maxlength')
-          "
-          class="text-red-500"
-          >Postal codes must be exactly 6 digits long.</small
+        <small *ngIf="isSamePostalCode" class="text-red-500"
+          >Starting postal code should not be the same as the
+          destination!</small
         >
-
-        <span class="absolute inset-y-0 right-4 inline-flex items-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 text-gray-400"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-            />
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-            />
-          </svg>
-        </span>
       </div>
+    </div>
+    <p class="text-center m-7">___________________________</p>
+    <div class="mx-auto max-w-lg text-center">
+      <p class="m-6 mt-10 text-gray-500">
+        On which days do you need to <em>Tompang</em>? <br />Click all that
+        apply.
+      </p>
+      <br />
+      <div class="col-span-4 grid grid-cols-3">
+        <label
+          for="MarketingAccept"
+          class="col-span-1 mt-4"
+          *ngFor="let eachDay of dayArray; index as i"
+        >
+          <div
+            class="inline-block rounded-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] hover:text-white focus:outline-none focus:ring"
+            (click)="monday(i)"
+          >
+            <input
+              type="number"
+              hidden
+              class="src-only"
+              formControlName="days"
+              [value]="days"
+            />
+            <span
+              class="block rounded-full bg-white px-8 py-3 text-sm font-medium hover:bg-transparent"
+            >
+              {{ eachDay }}
+            </span>
+          </div>
+        </label>
+      </div>
+      <p *ngIf="days[0]">You've selected:</p>
+      <p *ngFor="let day of days">{{ dayArray[day - 1] }}</p>
+      <small *ngIf="!days[0]" class="text-red-500"
+        >At least one day needs to be selected.</small
+      >
+    </div>
+    <p class="text-center m-7">___________________________</p>
+    <div class="mx-auto max-w-lg text-center">
+      <p class="m-6 mt-10 text-gray-500">
+        Which time of day do you need the hitch? <br />You may select just one
+        option.
+      </p>
+      <br />
+      <div class="col-span-4 grid grid-cols-3">
+        <label
+          for="MarketingAccept"
+          class="col-span-1 mt-4"
+          *ngFor="let eachTime of timeArray; index as i"
+        >
+          <div
+            class="inline-block rounded-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75"
+            (click)="time(i)"
+          >
+            <input
+              type="number"
+              hidden
+              class="src-only"
+              formControlName="timeOfDay"
+            />
+            <span
+              class="block rounded-full bg-white px-8 py-3 text-sm font-medium hover:bg-transparent"
+            >
+              {{ eachTime }}
+            </span>
+          </div>
+        </label>
+      </div>
+      <p *ngIf="timeOfTheDay">You've selected:</p>
+      <p>{{ timeArray[timeOfTheDay - 1] }}</p>
+      <small *ngIf="!timeOfTheDay" class="text-red-500"
+        >At least one time period needs to be selected.</small
+      >
+    </div>
+    <p class="text-center m-7">___________________________</p>
+    <div class="mx-auto max-w-lg text-center">
+      <p class="m-6 mt-10 text-gray-500">
+        Any additional remarks that you want your fellow Tompang-kakis to know?
+      </p>
+      <br />
+      <textarea
+        formControlName="description"
+        cols="50"
+        rows="5"
+        type="text"
+        class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
+        placeholder="Remarks are optional"
+      ></textarea>
     </div>
 
     <div class="flex items-center justify-between">
-      <!-- <p class="text-sm text-gray-500">
-        No account?
-        <a class="underline" href="">Sign up</a>
-      </p> -->
       <button
-        type="submit"
         class="ml-3 inline-block rounded-lg bg-gray-300 px-5 py-3 text-sm font-medium text-red-700"
+        (click)="resetFields()"
       >
         Start Over
       </button>
       <button
-        type="submit"
         class="ml-3 inline-block rounded-lg bg-red-700 px-5 py-3 text-sm font-medium text-white"
+        [disabled]="!addNewTrip.valid && isSamePostalCode"
       >
-        Add Trip To List
+        Add To List!
       </button>
     </div>
   </form>
+  <div class="mx-auto max-w-lg text-center">
+    <small
+      >You may view your posted trips in the "All Trips" section
+      <a href="#">here</a>.</small
+    >
+  </div>
 </div>

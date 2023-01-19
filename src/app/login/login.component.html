@@ -74,26 +74,38 @@
         </td>
       </tr>
       <tr>
-        <td colspan="2" class="text-center" >
+        <td class="text-center" >
           <button
             [style.display]="this.isLoading ? 'none' : 'inline'"
             (click)="login()"
-            class="group relative inline-block overflow-hidden border border-orange-500 px-8 py-3 focus:outline-none focus:ring"
+            class="inline-block rounded bg-red-500 px-8 py-3 transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-red-700"
           >
-          <span
-          class="absolute inset-y-0 left-0 w-[2px] bg-red-600 transition-all group-hover:w-full"
-        ></span>
         <span
-        class="relative text-sm font-medium text-red-500 transition-colors group-hover:text-white"
+        class="relative text-sm font-medium text-white transition-colors group-hover:text-amber-500"
       >Login</span>
           </button>
         </td>
+        <td>
+          <button
+          class="inline-block rounded border border-red-500 px-8 py-3 transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-red-700"
+          routerLink="/home"
+        >
+          <span
+            class="relative text-sm font-medium text-red-500 transition-colors"
+            >Back to Home</span
+          >
+        </button>
+        </td>
       </tr>
       <tr colspan="2" *ngIf="errors.length != 0">
-        <td class="font-bold text-center">
+        <td class="font-bold text-center" colspan="2">
           <ul *ngIf="this.errors.length > 1; else elseBlock">
             <li *ngFor="let error of errors">
-              <p><img class="w-5 mb-1 inline-block" src="../../assets/images/error_symbol.svg" alt="error_symbol"> {{ error }}</p>
+              <p class="text-red-500">
+                <svg class="w-5 mb-1 inline-block" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path>
+                </svg>
+                {{ error }}</p>
             </li>
           </ul>
           <ng-template #elseBlock>

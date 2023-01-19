@@ -10,7 +10,15 @@ import { DiscussionRoomComponent } from './discussion-room/discussion-room.compo
 import { UsersTripListComponent } from './users-trip-list/users-trip-list.component';
 const routes: Routes = [
   {
+    path: 'viewUserWithSameDest/:fromPost/toPost',
+    component: PublicLandingPgComponent,
+  },
+  {
     path: '',
+    component: PublicLandingPgComponent,
+  },
+  {
+    path: 'home',
     component: PublicLandingPgComponent,
   },
   {
@@ -20,14 +28,8 @@ const routes: Routes = [
   {
     path: 'trip',
     component: TripComponent,
-
-    children: [
-      {
-        path: 'trip-list',
-        component: UsersTripListComponent,
-      },
-    ],
   },
+  { path: 'trips', component: UsersTripListComponent}, 
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'discussion-room', component: DiscussionRoomComponent },
