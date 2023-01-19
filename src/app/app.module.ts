@@ -26,6 +26,7 @@ import { AddTripComponent } from './add-trip/add-trip.component';
 import { ListUsersWithSameDestinationComponent } from './list-users-with-same-destination/list-users-with-same-destination.component';
 import { EmailComponent } from './email/email.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
