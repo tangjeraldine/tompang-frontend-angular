@@ -27,18 +27,18 @@
           <td colspan="2">
             <input
               type="text"
-              formControlName="fName"
+              formControlName="name"
               class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg"
               placeholder="Please enter your Full Name"
             />
             <div
               *ngIf="
-                registerForm.controls['fName'].invalid &&
-                registerForm.controls['fName'].touched
+                registerForm.controls['name'].invalid &&
+                registerForm.controls['name'].touched
               "
             >
               <span
-                *ngIf="registerForm.controls['fName'].hasError('required')" class="text-red-500 text-sm"
+                *ngIf="registerForm.controls['name'].hasError('required')" class="text-red-500 text-sm"
               >
               <svg class="w-5 mb-1 inline-block" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"></path>
@@ -46,7 +46,7 @@
               Please enter your full name
               </span>
               <label
-                *ngIf="registerForm.controls['fName'].hasError('minlength')"
+                *ngIf="registerForm.controls['name'].hasError('minlength')"
               >
               <svg class="w-5 mb-1 inline-block" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"></path>
@@ -88,15 +88,15 @@
         </tr>
         <tr>
           <td colspan="2">
-            <input type="date" formControlName="DOB" class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg"
+            <input type="date" formControlName="dob" class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg"
             placeholder="Please select your Date of Birth"/>
             <div
               *ngIf="
-                registerForm.controls['DOB'].invalid &&
-                registerForm.controls['DOB'].touched
+                registerForm.controls['dob'].invalid &&
+                registerForm.controls['dob'].touched
               "
             >
-              <label class="text-red-500 text-sm" *ngIf="registerForm.controls['DOB'].hasError('required')">
+              <label class="text-red-500 text-sm" *ngIf="registerForm.controls['dob'].hasError('required')">
                 <svg class="w-5 mb-1 inline-block" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"></path>
                 </svg>
@@ -109,21 +109,21 @@
           <td colspan="2">
             <input
               type="text"
-              formControlName="uName"
+              formControlName="username"
               class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg"
               placeholder="Please enter your desired user name"
             />
             <br />
             <div
               *ngIf="
-                registerForm.controls['uName'].invalid &&
-                registerForm.controls['uName'].touched
+                registerForm.controls['username'].invalid &&
+                registerForm.controls['username'].touched
               "
             >
               <label
                 *ngIf="
-                  registerForm.controls['uName'].hasError('required') ||
-                  registerForm.controls['uName'].hasError('minlength')
+                  registerForm.controls['username'].hasError('required') ||
+                  registerForm.controls['username'].hasError('minlength')
                 " class="text-red-500 text-sm"
               >
               <svg class="w-5 mb-1 inline-block" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -165,21 +165,21 @@
         <tr>
           <td colspan="2">
             <input
-              formControlName="pw"
+              formControlName="password"
               class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg"
               placeholder="Please enter your desired password"
             />
             <br />
             <div
               *ngIf="
-                registerForm.controls['pw'].invalid &&
-                registerForm.controls['pw'].touched
+                registerForm.controls['password'].invalid &&
+                registerForm.controls['password'].touched
               " class="text-red-500 text-sm"
             >
               <label
                 *ngIf="
-                  registerForm.controls['pw'].hasError('required') ||
-                  registerForm.controls['pw'].hasError('minlength')
+                  registerForm.controls['password'].hasError('required') ||
+                  registerForm.controls['password'].hasError('minlength')
                 " class="text-red-500 text-sm"
               >
               <svg class="w-5 mb-1 inline-block" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

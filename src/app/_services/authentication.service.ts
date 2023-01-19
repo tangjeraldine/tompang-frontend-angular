@@ -93,7 +93,7 @@ export class AuthenticationService {
   
   register(formObj:any){
 
-    return this.http.post(this.baseHref + "/authenticate", formObj).pipe(
+    return this.http.post(this.baseHref + "/register", formObj).pipe(
       catchError((error) => {
         throw "ERROR"; 
       })

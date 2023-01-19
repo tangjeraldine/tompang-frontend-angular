@@ -17,28 +17,35 @@ export class RegisterComponent implements OnInit{
 
   ngOnInit(): void {
     this.registerForm=this.formBuilder.group({
-      'fName':new FormControl('', [Validators.required,Validators.minLength(10)]),
+      'name':new FormControl('', [Validators.required,Validators.minLength(10)]),
       'phone':new FormControl('', [Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
-      'DOB':new FormControl('', [Validators.required,Validators.minLength(10)]),
-      'uName':new FormControl('', [Validators.required,Validators.minLength(10)]),
+      'dob':new FormControl('', [Validators.required,Validators.minLength(10)]),
+      'username':new FormControl('', [Validators.required,Validators.minLength(10)]),
       'email':new FormControl('', [Validators.required,Validators.email]),
-      'pw':new FormControl('', [Validators.required,Validators.minLength(10)]),
+      'password':new FormControl('', [Validators.required,Validators.minLength(10)]),
       'pwConfirm':new FormControl('', [Validators.required,Validators.minLength(10)])
     }, { validators: passwordConfirmValidatior })
   }
 
 
-  createUser(){
+  createUser(){ 
     if (this.registerForm.invalid) {  //Checks if the user actually fill out the form
       alert("Please fill out the form properly")
       return;
-     }
-    alert("Working")
+     } 
+    var form_data = new FormData(); 
+    form_data.append("name", this.registerForm.controls['name'].value);
+    form_data.append("phone", this.registerForm.controls['phone'].value);
+    alert(this.registerForm.controls['dob'].value);
+    form_data.append("dob", this.registerForm.controls['dob'].value);
+    form_data.append("username", this.registerForm.controls['username'].value);
+    form_data.append("email", this.registerForm.controls['email'].value);
+    form_data.append("password", this.registerForm.controls['password'].value);
+  
     this._authService
-    .register(this.registerForm.value)
+    .register(form_data)
     .subscribe(
-      (data: any) => {
-        this._authService.setCredentials(data);
+      (data: any) => { 
         this.router.navigate(['/login']);
         return;
       }
@@ -46,7 +53,7 @@ export class RegisterComponent implements OnInit{
   }
 }
 export const passwordConfirmValidatior: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-  const password = control.get('pw');
+  const password = control.get('password');
   const confirmPassword = control.get('pwConfirm');
 
   return password?.value === confirmPassword?.value ? null : { notmatched: true };
