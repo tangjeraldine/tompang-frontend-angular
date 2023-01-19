@@ -218,6 +218,7 @@ export class UsersTripListComponent {
   }
 
   findUsers() {
+    this.router.navigate
     
   }
 }
