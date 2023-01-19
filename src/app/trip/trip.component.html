@@ -116,248 +116,249 @@
   </div>
 </section>
 
-<div
-  id="formTarget"
-  *ngIf="role"
-  class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8"
->
-  <div class="mx-auto max-w-lg text-center">
-    <h1 class="text-2xl font-bold sm:text-3xl">Locate Your Carpool Tribe:</h1>
-
-    <p class="mt-4 text-gray-500">
-      Fill in the <strong>6-digit postal code</strong> for where you're leaving
-      from, and where you're headed toward.
-    </p>
-  </div>
-
-  <form
-    [formGroup]="addNewTrip"
-    (submit)="addNewTripDetails()"
-    class="mx-auto mt-8 max-w-md mb-0 space-y-4 rounded-lg p-8 shadow-2xl"
-  >
-    <div>
-      <input type="text" hidden class="sr-only" formControlName="role" />
-      <label for="email" class="sr-only">From</label>
-
-      <div class="relative">
-        <input
-          formControlName="fromPostCode"
-          type="text"
-          class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
-          placeholder="Where you're beginning your trip"
-        />
-        <br />
-        <div
-          *ngIf="
-            addNewTrip.controls['fromPostCode'].invalid &&
-            addNewTrip.controls['fromPostCode'].touched
-          "
-        >
-          <small
-            *ngIf="
-              addNewTrip.controls['fromPostCode'].errors &&
-              addNewTrip.controls['fromPostCode'].hasError('required')
-            "
-            class="text-red-500"
-            >A starting postal code is required.</small
-          >
-          <small
-            *ngIf="
-              addNewTrip.controls['fromPostCode'].errors &&
-              addNewTrip.controls['fromPostCode'].hasError('pattern')
-            "
-            class="text-red-500"
-            >Postal codes must be exactly 6 digits long.</small
-          >
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <label for="password" class="sr-only">To</label>
-      <div class="relative">
-        <input
-          formControlName="toPostCode"
-          type="text"
-          (keyup)="samePostalCode()"
-          class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
-          placeholder="Where you're alighting"
-        />
-        <br />
-        <div
-          *ngIf="
-            addNewTrip.controls['toPostCode'].invalid &&
-            addNewTrip.controls['toPostCode'].touched
-          "
-        >
-          <small
-            *ngIf="
-              addNewTrip.controls['toPostCode'].errors &&
-              addNewTrip.controls['toPostCode'].hasError('required')
-            "
-            class="text-red-500"
-            >A destination postal code is required.</small
-          >
-          <small
-            *ngIf="
-              addNewTrip.controls['toPostCode'].errors &&
-              addNewTrip.controls['toPostCode'].hasError('pattern')
-            "
-            class="text-red-500"
-            >Postal codes must be exactly 6 digits long.</small
-          >
-        </div>
-        <small *ngIf="isSamePostalCode" class="text-red-500"
-          >Starting postal code should not be the same as the
-          destination!</small
-        >
-      </div>
-    </div>
-    <p class="text-center m-7">___________________________</p>
-    <div class="mx-auto max-w-lg text-center">
-      <p class="m-6 mt-10 text-gray-500">
-        On which days do you need to <em>Tompang</em>? <br />Click all that
-        apply.
-      </p>
-      <br />
-      <div class="col-span-4 grid grid-cols-2">
-        <label
-          for="MarketingAccept"
-          class="col-span-1 mt-4"
-          *ngFor="let eachDay of dayArray; index as i"
-        >
-          <div
-            class="inline-block rounded-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] hover:text-white focus:outline-none focus:ring"
-            (click)="monday(i)"
-          >
-            <input
-              type="number"
-              hidden
-              class="src-only"
-              formControlName="days"
-              [value]="days"
-            />
-            <span
-              class="block rounded-full bg-white px-12 py-4 text-sm font-medium hover:bg-transparent"
-            >
-              <span *ngIf="array[i]" class="text-green-600 text-sm">
-                &#10004;
-              </span>
-              {{ eachDay }}
-            </span>
-          </div>
-        </label>
-      </div>
-      <p *ngIf="days[0]">You've selected:</p>
-      <p *ngFor="let day of days">{{ dayArray[day - 1] }}</p>
-      <small *ngIf="!days[0]" class="text-red-500"
-        >At least one day needs to be selected.</small
-      >
-    </div>
-    <p class="text-center m-7">___________________________</p>
-    <div class="mx-auto max-w-lg text-center">
-      <p class="m-6 mt-10 text-gray-500">
-        Which time of day do you need the hitch? <br />You may select just one
-        option.
-      </p>
-      <br />
-      <div class="col-span-4 grid grid-cols-2">
-        <label
-          for="MarketingAccept"
-          class="col-span-1 mt-4"
-          *ngFor="let eachTime of timeArray; index as i"
-        >
-          <div
-            class="inline-block rounded-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75"
-            (click)="time(i)"
-          >
-            <input
-              type="number"
-              hidden
-              class="src-only"
-              formControlName="timeOfDay"
-            />
-            <span
-              class="block rounded-full bg-white px-8 py-3 text-sm font-medium hover:bg-transparent"
-            >
-              <span *ngIf="array2[i]" class="text-green-600 text-sm">
-                &#10004;
-              </span>
-              {{ eachTime }}
-            </span>
-          </div>
-        </label>
-      </div>
-      <p *ngIf="timeOfTheDay">You've selected:</p>
-      <p>{{ timeArray[timeOfTheDay - 1] }}</p>
-      <small *ngIf="!timeOfTheDay" class="text-red-500"
-        >At least one time period needs to be selected.</small
-      >
-    </div>
-    <p class="text-center m-7">___________________________</p>
-    <div class="mx-auto max-w-lg text-center">
-      <p class="m-6 mt-10 text-gray-500">
-        Any additional remarks that you want your fellow Tompang-kakis to know?
-      </p>
-      <br />
-      <textarea
-        formControlName="description"
-        cols="50"
-        rows="5"
-        type="text"
-        class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
-        placeholder="Remarks are optional"
-      ></textarea>
-    </div>
-
-    <div class="flex items-center justify-between">
-      <button
-        class="ml-3 inline-block rounded-lg bg-gray-300 px-5 py-3 text-sm font-medium text-red-700"
-        (click)="resetFields()"
-      >
-        Start Over
-      </button>
-      <button
-        class="ml-3 inline-block rounded-lg bg-red-700 px-5 py-3 text-sm font-medium text-white"
-        [disabled]="!addNewTrip.valid && isSamePostalCode"
-      >
-        Add To List!
-      </button>
-    </div>
-  </form>
+<div id="formTarget">
   <div
-    *ngIf="addSuccess"
-    role="alert"
-    class="rounded-xl border border-gray-100 p-4 shadow-xl z-10"
+    *ngIf="role"
+    class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 w-3/5"
   >
-    <div class="flex-1 mx-auto w-60">
-      <strong class="block font-medium text-gray-900">
-        <span class="text-green-600">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="h-6 w-6"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-        </span>
-        Your trip has been successfully added!
-      </strong>
+    <div class="mx-auto max-w-lg text-center">
+      <h1 class="text-2xl font-bold sm:text-3xl">Locate Your Carpool Tribe:</h1>
+      <p class="mt-4 text-gray-500">
+        Fill in the <strong>6-digit postal code</strong> for where you're
+        leaving from, and where you're headed toward.
+      </p>
+    </div>
 
-      <p class="mt-1 text-sm text-gray-700">
-        Showing potential Tompang kakis in... {{ timerCount }}
-      </p>
-      <p class="mt-1 text-sm text-gray-700">
-        If the page does not redirect automatically, click
-        <a href="/trips">here</a>.
-      </p>
+    <form
+      [formGroup]="addNewTrip"
+      (submit)="addNewTripDetails()"
+      class="mx-auto mt-8 max-w-md mb-0 space-y-4 rounded-lg p-8 shadow-2xl"
+    >
+      <div>
+        <input type="text" hidden class="sr-only" formControlName="role" />
+        <label for="email" class="sr-only">From</label>
+
+        <div class="relative">
+          <input
+            formControlName="fromPostCode"
+            type="text"
+            class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
+            placeholder="Where you're beginning your trip"
+          />
+          <br />
+          <div
+            *ngIf="
+              addNewTrip.controls['fromPostCode'].invalid &&
+              addNewTrip.controls['fromPostCode'].touched
+            "
+          >
+            <small
+              *ngIf="
+                addNewTrip.controls['fromPostCode'].errors &&
+                addNewTrip.controls['fromPostCode'].hasError('required')
+              "
+              class="text-red-500"
+              >A starting postal code is required.</small
+            >
+            <small
+              *ngIf="
+                addNewTrip.controls['fromPostCode'].errors &&
+                addNewTrip.controls['fromPostCode'].hasError('pattern')
+              "
+              class="text-red-500"
+              >Postal codes must be exactly 6 digits long.</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label for="password" class="sr-only">To</label>
+        <div class="relative">
+          <input
+            formControlName="toPostCode"
+            type="text"
+            (keyup)="samePostalCode()"
+            class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
+            placeholder="Where you're alighting"
+          />
+          <br />
+          <div
+            *ngIf="
+              addNewTrip.controls['toPostCode'].invalid &&
+              addNewTrip.controls['toPostCode'].touched
+            "
+          >
+            <small
+              *ngIf="
+                addNewTrip.controls['toPostCode'].errors &&
+                addNewTrip.controls['toPostCode'].hasError('required')
+              "
+              class="text-red-500"
+              >A destination postal code is required.</small
+            >
+            <small
+              *ngIf="
+                addNewTrip.controls['toPostCode'].errors &&
+                addNewTrip.controls['toPostCode'].hasError('pattern')
+              "
+              class="text-red-500"
+              >Postal codes must be exactly 6 digits long.</small
+            >
+          </div>
+          <small *ngIf="isSamePostalCode" class="text-red-500"
+            >Starting postal code should not be the same as the
+            destination!</small
+          >
+        </div>
+      </div>
+      <p class="text-center m-7">___________________________</p>
+      <div class="mx-auto max-w-lg text-center">
+        <p class="m-6 mt-10 text-gray-500">
+          On which days do you need to <em>Tompang</em>? <br />Click all that
+          apply.
+        </p>
+        <br />
+        <div class="col-span-4 grid grid-cols-2">
+          <label
+            for="MarketingAccept"
+            class="col-span-1 mt-4"
+            *ngFor="let eachDay of dayArray; index as i"
+          >
+            <div
+              class="inline-block rounded-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] hover:text-white focus:outline-none focus:ring"
+              (click)="monday(i)"
+            >
+              <input
+                type="number"
+                hidden
+                class="src-only"
+                formControlName="days"
+                [value]="days"
+              />
+              <span
+                class="block rounded-full bg-white px-12 py-4 text-sm font-medium hover:bg-transparent"
+              >
+                <span *ngIf="array[i]" class="text-green-600 text-sm">
+                  &#10004;
+                </span>
+                {{ eachDay }}
+              </span>
+            </div>
+          </label>
+        </div>
+        <p *ngIf="days[0]">You've selected:</p>
+        <p *ngFor="let day of days">{{ dayArray[day - 1] }}</p>
+        <small *ngIf="!days[0]" class="text-red-500"
+          >At least one day needs to be selected.</small
+        >
+      </div>
+      <p class="text-center m-7">___________________________</p>
+      <div class="mx-auto max-w-lg text-center">
+        <p class="m-6 mt-10 text-gray-500">
+          Which time of day do you need the hitch? <br />You may select just one
+          option.
+        </p>
+        <br />
+        <div class="col-span-4 grid grid-cols-2">
+          <label
+            for="MarketingAccept"
+            class="col-span-1 mt-4"
+            *ngFor="let eachTime of timeArray; index as i"
+          >
+            <div
+              class="inline-block rounded-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75"
+              (click)="time(i)"
+            >
+              <input
+                type="number"
+                hidden
+                class="src-only"
+                formControlName="timeOfDay"
+              />
+              <span
+                class="block rounded-full bg-white px-8 py-3 text-sm font-medium hover:bg-transparent"
+              >
+                <span *ngIf="array2[i]" class="text-green-600 text-sm">
+                  &#10004;
+                </span>
+                {{ eachTime }}
+              </span>
+            </div>
+          </label>
+        </div>
+        <p *ngIf="timeOfTheDay">You've selected:</p>
+        <p>{{ timeArray[timeOfTheDay - 1] }}</p>
+        <small *ngIf="!timeOfTheDay" class="text-red-500"
+          >At least one time period needs to be selected.</small
+        >
+      </div>
+      <p class="text-center m-7">___________________________</p>
+      <div class="mx-auto max-w-lg text-center">
+        <p class="m-6 mt-10 text-gray-500">
+          Any additional remarks that you want your fellow Tompang-kakis to
+          know?
+        </p>
+        <br />
+        <textarea
+          formControlName="description"
+          cols="50"
+          rows="5"
+          type="text"
+          class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
+          placeholder="Remarks are optional"
+        ></textarea>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <button
+          class="ml-3 inline-block rounded-lg bg-gray-300 px-5 py-3 text-sm font-medium text-red-700"
+          (click)="resetFields()"
+        >
+          Start Over
+        </button>
+        <button
+          class="ml-3 inline-block rounded-lg bg-red-700 px-5 py-3 text-sm font-medium text-white"
+          [disabled]="!addNewTrip.valid && isSamePostalCode"
+        >
+          Add To List!
+        </button>
+      </div>
+    </form>
+    <div
+      *ngIf="addSuccess"
+      role="alert"
+      class="rounded-xl border border-gray-100 p-4 shadow-xl z-10"
+    >
+      <div class="flex-1 mx-auto w-60">
+        <strong class="block font-medium text-gray-900">
+          <span class="text-green-600">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="h-6 w-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </span>
+          Your trip has been successfully added!
+        </strong>
+
+        <p class="mt-1 text-sm text-gray-700">
+          Showing potential Tompang kakis in... {{ timerCount }}
+        </p>
+        <p class="mt-1 text-sm text-gray-700">
+          If the page does not redirect automatically, click
+          <a href="/trips">here</a>.
+        </p>
+      </div>
     </div>
   </div>
 </div>

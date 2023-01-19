@@ -43,7 +43,6 @@ export class TripComponent implements OnInit {
   changeRole1() {
     this.role = 2;
     this.scroller.scrollToAnchor('formTarget');
-    console.log('clicked');
   }
 
   changeRole2() {

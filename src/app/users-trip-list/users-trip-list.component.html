@@ -1,157 +1,388 @@
 <app-header-user></app-header-user>
 
-
 <div class="rounded-lg border border-gray-500 m-4">
-    <table class="min-w-full divide-y divide-gray-200 text-sm">
-        <thead class="bg-gray-100">
-            <tr class="text-center">
-                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900"><p class="flex items-center gap-2 justify-center">ID</p></th>
-                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900"><p class="flex items-center gap-2 justify-center">From</p></th>
-                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900"><p class="flex items-center gap-2 justify-center">To</p></th>
-                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900"><p class="flex items-center gap-2 justify-center">Description</p></th>
-                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900"><p class="flex items-center gap-2 justify-center">Role</p></th>
-                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900"><p class="flex items-center gap-2 justify-center">Days</p></th>
-                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900"><p class="flex items-center gap-2 justify-center">Time</p></th>
-                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900"><p class="flex items-center gap-2 justify-center">Actions</p></th>
-            </tr>
-        </thead>
-        <tbody class="divide-y divide-gray-300">
-            <ng-container *ngFor="let t of this.trip_list;index as i">
-                <!-- MAIN TABLE -->
-                <ng-template #elseBlock> 
-                    <tr class="text-center whitespace-nowrap px-4 py-2 text-xs text-gray-700">
-                        <td class="font-medium text-gray-900">{{t.id}}</td>
-                        <td >{{t.fromPostal}}</td>
-                        <td>{{t.toPostal}}</td>
-                        <td>{{t.description}}</td> 
-                        <td>
-                            <span class="inline-flex items-center justify-center rounded-full bg-amber-100 px-2.5 py-0.5 text-amber-700" *ngIf="t.role=='1'">
-                                Driver
-                            </span>
-                            <span class="inline-flex items-center justify-center rounded-full bg-emerald-100 px-2.5 py-0.5 text-emerald-700" *ngIf="t.role=='2'">
-                                Passenger
-                            </span>
-                        </td>
-                        <td>
-                            {{this.parseToDaysStr(t.days)}}
-                        </td>
-                        <td>
-                            {{this.parseTimeOfDay(t.timeOfDay)}}
-                        </td>
-                        <td>
-                            <div class="lg:inline-block text-center">
-                                <button (click)="edit(i)">
-                                    <!-- EDIT BUTTON -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 p-0.5 hover:text-black">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-                                    </svg>                                  
-                                </button>
-                                <button (click)="delete(i)">
-                                    <!-- DELETE BUTTON -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 p-0.5 hover:text-black">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                                    </svg>
-                                    
-                                </button>
-                                <button (click)="findUsers()">
-                                    <!-- USER GROUP BUTTON -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 p-0.5 hover:text-black">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
-                                    </svg>
-                                </button> 
-                            </div>
-                        </td>
-                    </tr>
-                </ng-template>
-                <!-- EDIT TABLE -->
-                <ng-container *ngIf="i==this.edit_row_index;else elseBlock">
-                    <tr>
-                        <td class="whitespace-nowrap px-4 py-2 font-medium text-black">{{t.id}}</td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">
-                            <div class="flex flex-col relative">
-                                <input class="text-center mx-auto" type="text" name="edit_from_postal_{{i}}" [(ngModel)]="edit_from_postal">
-                            </div>
-                        </td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><input class="text-center" type="text" name="edit_to_postal_{{i}}" [(ngModel)]="edit_to_postal"></td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><textarea name="edit_description_{{i}}" [(ngModel)]="edit_description"></textarea></td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700"> 
-                            <input type="radio" value="1" 
-                            name="edit_role_{{i}}" 
-                            [checked]="edit_role=='1'"
-                            (change)="editRole(1)"> Driver
-                            <br>
-                            <input type="radio" value="2" 
-                            [checked]="edit_role=='2'"
-                            name="edit_role_{{i}}" 
-                            (change)="editRole(2)"> Passenger
-                        </td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700 mx-auto">
-                            <input type="checkbox" name="mon_{{i}}_cb" [(ngModel)]="this.edit_days[0]" [checked]="this.contains(t.days, '1')"> Monday
-                            <br>
-                            <input type="checkbox" name="tue_{{i}}_cb" [(ngModel)]="this.edit_days[1]" [checked]="this.contains(t.days, '2')"> Tuesday
-                            <br>
-                            <input type="checkbox" name="wed_{{i}}_cb" [(ngModel)]="this.edit_days[2]" [checked]="this.contains(t.days, '3')"> Wednesday
-                            <br>
-                            <input type="checkbox" name="thu_{{i}}_cb" [(ngModel)]="this.edit_days[3]" [checked]="this.contains(t.days, '4')"> Thursday
-                            <br>
-                            <input type="checkbox" name="fri_{{i}}_cb" [(ngModel)]="this.edit_days[4]" [checked]="this.contains(t.days, '5')"> Friday
-                            <br>
-                            <input type="checkbox" name="sat_{{i}}_cb" [(ngModel)]="this.edit_days[5]" [checked]="this.contains(t.days, '6')"> Saturday
-                            <br>
-                            <input type="checkbox" name="sun_{{i}}_cb" [(ngModel)]="this.edit_days[6]" [checked]="this.contains(t.days, '7')"> Sunday
-                        </td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">
-                            <input type="radio" value="1" 
-                            name="edit_time_of_day_{{i}}" 
-                            [checked]="edit_time_of_day=='1'"
-                            (change)="editTimeOfDay(1)"> Morning
-                            <br>
-                            <input type="radio" value="2" 
-                            [checked]="edit_time_of_day=='2'"
-                            name="edit_time_of_day_{{i}}" 
-                            (change)="editTimeOfDay(2)"> Afternoon
-                            <br>
-                            <input type="radio" value="3" 
-                            [checked]="edit_time_of_day=='3'"
-                            name="edit_time_of_day_{{i}}" 
-                            (change)="editTimeOfDay(3)"> Evening
-                        </td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">
-                            <div class="text-center flex flex-row">
-                                <button (click)="update()">
-                                    <!-- SAVE BUTTON -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 p-0.5 hover:text-black">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                                      </svg>
-                                </button>
-                                <br>
-                                <button (click)="cancelEdit()">
-                                    <!-- CANCEL BUTTON -->
-                                    <svg class="w-6 h-6 p-0.5 hover:text-black" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="text-xs text-center" *ngIf="this.edit_from_postal_error || this.edit_to_postal_error || this.edit_description_error || this.edit_days_error">
-                        <td class="bg-gray-900 text-center align-middle">
-                            <span class="inline-block m-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 m-1 text-red-500">
-                                <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd" />
-                            </svg>
-                            </span>
-                          </td>
-                        <td class="border-solid border-y font-medium text-red-500 border-red-600">{{this.edit_from_postal_error}}</td>
-                        <td class="border-solid border-y font-medium text-red-500 border-red-600">{{this.edit_to_postal_error}}</td>
-                        <td class="border-solid border-y font-medium text-red-500 border-red-600">{{this.edit_description_error}}</td>
-                        <td class="border-solid border-y font-medium text-red-500 border-red-600"></td>
-                        <td class="border-solid border-y font-medium text-red-500 border-red-600">{{this.edit_days_error}}</td>
-                        <td class="border-solid border-y font-medium text-red-500 border-red-600"></td>
-                        <td class="border-solid border-y font-medium text-red-500 border-red-600"></td>
-                    </tr>
-                </ng-container>
-            </ng-container>  
+  <div *ngIf="tripDeleted" class="bg-green-700 px-4 py-3 text-white">
+    <p class="text-center text-sm font-medium">
+      Trip successfully deleted!
+      <span>Disappearing in... {{ timerCount }}</span>
+    </p>
+  </div>
+  <div
+    *ngIf="tripNotDeleted"
+    class="relative bg-rose-500 px-4 py-3 pr-14 text-white"
+  >
+    <p class="text-left text-sm font-medium sm:text-center">
+      This trip could not be deleted! Please try to do so again later.
+    </p>
+    <button
+      (click)="closeNotDeletedButton()"
+      aria-label="Close"
+      class="absolute top-1/2 right-4 -translate-y-1/2 rounded-lg bg-black/10 p-1 transition hover:bg-black/20"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </button>
+  </div>
+
+  <table class="min-w-full divide-y divide-gray-200 text-sm">
+    <thead class="bg-gray-100">
+      <tr class="text-center">
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+          <p class="flex items-center gap-2 justify-center">ID</p>
+        </th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+          <p class="flex items-center gap-2 justify-center">From</p>
+        </th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+          <p class="flex items-center gap-2 justify-center">To</p>
+        </th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+          <p class="flex items-center gap-2 justify-center">Description</p>
+        </th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+          <p class="flex items-center gap-2 justify-center">Role</p>
+        </th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+          <p class="flex items-center gap-2 justify-center">Days</p>
+        </th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+          <p class="flex items-center gap-2 justify-center">Time</p>
+        </th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+          <p class="flex items-center gap-2 justify-center">Actions</p>
+        </th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-300">
+      <ng-container *ngFor="let t of this.trip_list; index as i">
+        <!-- MAIN TABLE -->
+        <ng-template #elseBlock>
+          <tr
+            class="text-center whitespace-nowrap px-4 py-2 text-xs text-gray-700"
+          >
+            <td class="font-medium text-gray-900">{{ t.id }}</td>
+            <td>{{ t.fromPostal }}</td>
+            <td>{{ t.toPostal }}</td>
+            <td>{{ t.description }}</td>
+            <td>
+              <span
+                class="inline-flex items-center justify-center rounded-full bg-amber-100 px-2.5 py-0.5 text-amber-700"
+                *ngIf="t.role == '1'"
+              >
+                Driver
+              </span>
+              <span
+                class="inline-flex items-center justify-center rounded-full bg-emerald-100 px-2.5 py-0.5 text-emerald-700"
+                *ngIf="t.role == '2'"
+              >
+                Passenger
+              </span>
+            </td>
+            <td>
+              {{ this.parseToDaysStr(t.days) }}
+            </td>
+            <td>
+              {{ this.parseTimeOfDay(t.timeOfDay) }}
+            </td>
+            <td>
+              <div class="lg:inline-block text-center">
+                <button (click)="edit(i)">
+                  <!-- EDIT BUTTON -->
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6 p-0.5 hover:text-black"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                    />
+                  </svg>
+                </button>
+                <button (click)="delete(i)">
+                  <!-- DELETE BUTTON -->
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6 p-0.5 hover:text-black"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                    />
+                  </svg>
+                </button>
+                <button (click)="findUsers()">
+                  <!-- USER GROUP BUTTON -->
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6 p-0.5 hover:text-black"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+        <!-- EDIT TABLE -->
+        <ng-container *ngIf="i == this.edit_row_index; else elseBlock">
+          <tr>
+            <td class="whitespace-nowrap px-4 py-2 font-medium text-black">
+              {{ t.id }}
+            </td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+              <div class="flex flex-col relative">
+                <input
+                  class="text-center mx-auto"
+                  type="text"
+                  name="edit_from_postal_{{ i }}"
+                  [(ngModel)]="edit_from_postal"
+                />
+              </div>
+            </td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+              <input
+                class="text-center"
+                type="text"
+                name="edit_to_postal_{{ i }}"
+                [(ngModel)]="edit_to_postal"
+              />
+            </td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+              <textarea
+                name="edit_description_{{ i }}"
+                [(ngModel)]="edit_description"
+              ></textarea>
+            </td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+              <input
+                type="radio"
+                value="1"
+                name="edit_role_{{ i }}"
+                [checked]="edit_role == '1'"
+                (change)="editRole(1)"
+              />
+              Driver
+              <br />
+              <input
+                type="radio"
+                value="2"
+                [checked]="edit_role == '2'"
+                name="edit_role_{{ i }}"
+                (change)="editRole(2)"
+              />
+              Passenger
+            </td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700 mx-auto">
+              <input
+                type="checkbox"
+                name="mon_{{ i }}_cb"
+                [(ngModel)]="this.edit_days[0]"
+                [checked]="this.contains(t.days, '1')"
+              />
+              Monday
+              <br />
+              <input
+                type="checkbox"
+                name="tue_{{ i }}_cb"
+                [(ngModel)]="this.edit_days[1]"
+                [checked]="this.contains(t.days, '2')"
+              />
+              Tuesday
+              <br />
+              <input
+                type="checkbox"
+                name="wed_{{ i }}_cb"
+                [(ngModel)]="this.edit_days[2]"
+                [checked]="this.contains(t.days, '3')"
+              />
+              Wednesday
+              <br />
+              <input
+                type="checkbox"
+                name="thu_{{ i }}_cb"
+                [(ngModel)]="this.edit_days[3]"
+                [checked]="this.contains(t.days, '4')"
+              />
+              Thursday
+              <br />
+              <input
+                type="checkbox"
+                name="fri_{{ i }}_cb"
+                [(ngModel)]="this.edit_days[4]"
+                [checked]="this.contains(t.days, '5')"
+              />
+              Friday
+              <br />
+              <input
+                type="checkbox"
+                name="sat_{{ i }}_cb"
+                [(ngModel)]="this.edit_days[5]"
+                [checked]="this.contains(t.days, '6')"
+              />
+              Saturday
+              <br />
+              <input
+                type="checkbox"
+                name="sun_{{ i }}_cb"
+                [(ngModel)]="this.edit_days[6]"
+                [checked]="this.contains(t.days, '7')"
+              />
+              Sunday
+            </td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+              <input
+                type="radio"
+                value="1"
+                name="edit_time_of_day_{{ i }}"
+                [checked]="edit_time_of_day == '1'"
+                (change)="editTimeOfDay(1)"
+              />
+              Morning
+              <br />
+              <input
+                type="radio"
+                value="2"
+                [checked]="edit_time_of_day == '2'"
+                name="edit_time_of_day_{{ i }}"
+                (change)="editTimeOfDay(2)"
+              />
+              Afternoon
+              <br />
+              <input
+                type="radio"
+                value="3"
+                [checked]="edit_time_of_day == '3'"
+                name="edit_time_of_day_{{ i }}"
+                (change)="editTimeOfDay(3)"
+              />
+              Evening
+            </td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+              <div class="text-center flex flex-row">
+                <button (click)="update()">
+                  <!-- SAVE BUTTON -->
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6 p-0.5 hover:text-black"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M4.5 12.75l6 6 9-13.5"
+                    />
+                  </svg>
+                </button>
+                <br />
+                <button (click)="cancelEdit()">
+                  <!-- CANCEL BUTTON -->
+                  <svg
+                    class="w-6 h-6 p-0.5 hover:text-black"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M6 18L18 6M6 6l12 12"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr
+            class="text-xs text-center"
+            *ngIf="
+              this.edit_from_postal_error ||
+              this.edit_to_postal_error ||
+              this.edit_description_error ||
+              this.edit_days_error
+            "
+          >
+            <td class="bg-gray-900 text-center align-middle">
+              <span class="inline-block m-auto">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="w-6 h-6 m-1 text-red-500"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </span>
+            </td>
+            <td
+              class="border-solid border-y font-medium text-red-500 border-red-600"
+            >
+              {{ this.edit_from_postal_error }}
+            </td>
+            <td
+              class="border-solid border-y font-medium text-red-500 border-red-600"
+            >
+              {{ this.edit_to_postal_error }}
+            </td>
+            <td
+              class="border-solid border-y font-medium text-red-500 border-red-600"
+            >
+              {{ this.edit_description_error }}
+            </td>
+            <td
+              class="border-solid border-y font-medium text-red-500 border-red-600"
+            ></td>
+            <td
+              class="border-solid border-y font-medium text-red-500 border-red-600"
+            >
+              {{ this.edit_days_error }}
+            </td>
+            <td
+              class="border-solid border-y font-medium text-red-500 border-red-600"
+            ></td>
+            <td
+              class="border-solid border-y font-medium text-red-500 border-red-600"
+            ></td>
+          </tr>
+        </ng-container>
+      </ng-container>
     </tbody>
   </table>
 </div>
