@@ -28,7 +28,7 @@ export class TripComponent implements OnInit {
     'Sunday',
   ];
   days: number[] = [];
-  joindays: any = this.days?.join();
+  joindays: any = this.days?.join('');
   timeArray: string[] = ['Morning', 'Afternoon', 'Evening', 'Night'];
   timeOfTheDay: any;
   tripObj: any;
@@ -87,9 +87,9 @@ export class TripComponent implements OnInit {
       role: this.role,
       days: this.days.join(),
       timeOfDay: this.timeOfTheDay,
-    }); 
+    });
     this.addTripServ.addTrip(this.addNewTrip.value).subscribe((data) => {
-      alert("SUCCESS!");
+      alert('SUCCESS!');
     });
   }
 
