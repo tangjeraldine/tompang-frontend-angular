@@ -82,7 +82,9 @@
           </ol>
         </div>
       </div>
-
+      <p *ngIf="toCustomer" class="mt-4 max-w-lg sm:text-xl sm:leading-relaxed">
+        Hey {{ toCustomer.name }}, welcome back!
+      </p>
       <h1 class="text-3xl font-extrabold sm:text-5xl">
         Find your
 
@@ -91,13 +93,11 @@
         </strong>
         today.
       </h1>
+      <h1 class="text-3xl font-extrabold sm:text-3xl mt-10">
+        You're looking for...
+      </h1>
 
-      <p class="mt-4 max-w-lg sm:text-xl sm:leading-relaxed">
-        Hey ---user's name---, welcome back!
-      </p>
-      <h1 class="text-3xl font-extrabold sm:text-3xl">You're looking for...</h1>
-
-      <div class="mt-8 flex flex-wrap gap-4 text-center">
+      <div class="mt-3 flex flex-wrap gap-4 text-center">
         <button
           class="block w-full rounded bg-rose-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto"
           (click)="changeRole1()"
@@ -147,22 +147,29 @@
           placeholder="Where you're beginning your trip"
         />
         <br />
-        <small
+        <div
           *ngIf="
-            addNewTrip.controls['fromPostCode'].errors &&
-            addNewTrip.controls['fromPostCode'].hasError('required')
+            addNewTrip.controls['fromPostCode'].invalid &&
+            addNewTrip.controls['fromPostCode'].touched
           "
-          class="text-red-500"
-          >A starting postal code is required.</small
         >
-        <small
-          *ngIf="
-            addNewTrip.controls['fromPostCode'].errors &&
-            addNewTrip.controls['fromPostCode'].hasError('pattern')
-          "
-          class="text-red-500"
-          >Postal codes must be exactly 6 digits long.</small
-        >
+          <small
+            *ngIf="
+              addNewTrip.controls['fromPostCode'].errors &&
+              addNewTrip.controls['fromPostCode'].hasError('required')
+            "
+            class="text-red-500"
+            >A starting postal code is required.</small
+          >
+          <small
+            *ngIf="
+              addNewTrip.controls['fromPostCode'].errors &&
+              addNewTrip.controls['fromPostCode'].hasError('pattern')
+            "
+            class="text-red-500"
+            >Postal codes must be exactly 6 digits long.</small
+          >
+        </div>
       </div>
     </div>
 
@@ -177,22 +184,29 @@
           placeholder="Where you're alighting"
         />
         <br />
-        <small
+        <div
           *ngIf="
-            addNewTrip.controls['toPostCode'].errors &&
-            addNewTrip.controls['toPostCode'].hasError('required')
+            addNewTrip.controls['toPostCode'].invalid &&
+            addNewTrip.controls['toPostCode'].touched
           "
-          class="text-red-500"
-          >A destination postal code is required.</small
         >
-        <small
-          *ngIf="
-            addNewTrip.controls['toPostCode'].errors &&
-            addNewTrip.controls['toPostCode'].hasError('pattern')
-          "
-          class="text-red-500"
-          >Postal codes must be exactly 6 digits long.</small
-        >
+          <small
+            *ngIf="
+              addNewTrip.controls['toPostCode'].errors &&
+              addNewTrip.controls['toPostCode'].hasError('required')
+            "
+            class="text-red-500"
+            >A destination postal code is required.</small
+          >
+          <small
+            *ngIf="
+              addNewTrip.controls['toPostCode'].errors &&
+              addNewTrip.controls['toPostCode'].hasError('pattern')
+            "
+            class="text-red-500"
+            >Postal codes must be exactly 6 digits long.</small
+          >
+        </div>
         <small *ngIf="isSamePostalCode" class="text-red-500"
           >Starting postal code should not be the same as the
           destination!</small
@@ -206,7 +220,7 @@
         apply.
       </p>
       <br />
-      <div class="col-span-4 grid grid-cols-3">
+      <div class="col-span-4 grid grid-cols-2">
         <label
           for="MarketingAccept"
           class="col-span-1 mt-4"
@@ -224,8 +238,11 @@
               [value]="days"
             />
             <span
-              class="block rounded-full bg-white px-8 py-3 text-sm font-medium hover:bg-transparent"
+              class="block rounded-full bg-white px-12 py-4 text-sm font-medium hover:bg-transparent"
             >
+              <span *ngIf="array[i]" class="text-green-600 text-sm">
+                &#10004;
+              </span>
               {{ eachDay }}
             </span>
           </div>
@@ -244,7 +261,7 @@
         option.
       </p>
       <br />
-      <div class="col-span-4 grid grid-cols-3">
+      <div class="col-span-4 grid grid-cols-2">
         <label
           for="MarketingAccept"
           class="col-span-1 mt-4"
@@ -263,6 +280,9 @@
             <span
               class="block rounded-full bg-white px-8 py-3 text-sm font-medium hover:bg-transparent"
             >
+              <span *ngIf="array2[i]" class="text-green-600 text-sm">
+                &#10004;
+              </span>
               {{ eachTime }}
             </span>
           </div>
@@ -305,10 +325,39 @@
       </button>
     </div>
   </form>
-  <div class="mx-auto max-w-lg text-center">
-    <small
-      >You may view your posted trips in the "All Trips" section
-      <a href="#">here</a>.</small
-    >
+  <div
+    *ngIf="addSuccess"
+    role="alert"
+    class="rounded-xl border border-gray-100 p-4 shadow-xl z-10"
+  >
+    <div class="flex-1 mx-auto w-60">
+      <strong class="block font-medium text-gray-900">
+        <span class="text-green-600">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-6 w-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+        </span>
+        Your trip has been successfully added!
+      </strong>
+
+      <p class="mt-1 text-sm text-gray-700">
+        Showing potential Tompang kakis in... {{ timerCount }}
+      </p>
+      <p class="mt-1 text-sm text-gray-700">
+        If the page does not redirect automatically, click
+        <a href="/trips">here</a>.
+      </p>
+    </div>
   </div>
 </div>

@@ -118,15 +118,10 @@ export class UsersTripListComponent {
     let ret = "";
     for(let i=0;i<ary.length;i++) {
       if(ary[i]) {
-        ret += (i+1) + ",";
+        ret += ((i+1) + "");
       }
     }
 
-    if(ret == "") {
-      return ret;
-    }
-
-    ret = ret.slice(0, -1);
     return ret;
   }
 
@@ -187,36 +182,42 @@ export class UsersTripListComponent {
   }
 
   parseToDaysStr(daysStr:string) { 
-    var days = daysStr.split(",");
+
     var str = "";
-    for(let i=0; i<days.length; i++) {
-      if(days[i]=='1'){
+    for(let i=0; i<daysStr.length; i++) {
+      if(daysStr.charAt(i)=='1'){
         str += "Monday";
       }
-      else if(days[i]=='2'){
+      else if(daysStr.charAt(i)=='2'){
         str += "Tuesday";
       }
-      else if(days[i]=='3'){
+      else if(daysStr.charAt(i)=='3'){
         str += "Wednesday";
       }
-      else if(days[i]=='4'){
+      else if(daysStr.charAt(i)=='4'){
         str += "Thurday";
       }
-      else if(days[i]=='5'){
+      else if(daysStr.charAt(i)=='5'){
         str += "Friday";
       }
-      else if(days[i]=='6'){
+      else if(daysStr.charAt(i)=='6'){
         str += "Saturday";
       }
-      else if(days[i]=='7'){
+      else if(daysStr.charAt(i)=='7'){
         str += "Sunday";
       } 
 
-      if(i != (days.length-1)) {
+      if(i != (daysStr.length-1)) {
+
         str +=", ";
       }
     }
 
     return str;
+
+  }
+
+  findUsers(fromPostal:string, toPostal:string, days:string, timeOfDay:string) {
+    this.router.navigate(['/show-same-trip', fromPostal, toPostal, days, timeOfDay]);
   }
 }

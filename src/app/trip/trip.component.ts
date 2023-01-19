@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { AddTripService } from '../_services/add-trip.service';
 import { AuthenticationService } from '../_services/authentication.service';
 import { ViewportScroller } from '@angular/common';
+import { CustomerService } from '../_services/customer.service';
 
 @Component({
   selector: 'app-trip',
@@ -18,6 +19,8 @@ import { ViewportScroller } from '@angular/common';
 export class TripComponent implements OnInit {
   addNewTrip!: FormGroup;
   role!: number;
+  array: boolean[] = [false, false, false, false, false, false, false];
+  array2: boolean[] = [false, false, false, false, false];
   dayArray: string[] = [
     'Monday',
     'Tuesday',
@@ -32,22 +35,26 @@ export class TripComponent implements OnInit {
   timeOfTheDay: any;
   tripObj: any;
   toggled: boolean = false;
+  addSuccess: boolean = false;
+  timerCount: number = 5;
+  toCustomer: any;
+  custID: any;
 
   changeRole1() {
     this.role = 2;
-    // console.log(this.role);
     this.scroller.scrollToAnchor('formTarget');
+    console.log('clicked');
   }
 
   changeRole2() {
     this.role = 1;
-    // console.log(this.role);
     this.scroller.scrollToAnchor('formTarget');
   }
 
   constructor(
     private addNewTripFB: FormBuilder,
     private _authService: AuthenticationService,
+    private customerService: CustomerService,
     private addTripServ: AddTripService,
     private router: Router,
     private scroller: ViewportScroller
@@ -55,23 +62,26 @@ export class TripComponent implements OnInit {
 
   monday(i: number) {
     this.toggled = this.days.includes(i + 1);
-    // console.log(this.toggled);
     if (this.toggled === false) {
       this.days?.push(i + 1);
       this.days.sort();
-      // console.log(this.days);
+      this.array[i] = true;
     } else {
       this.days = this.days?.filter((x: number) => x !== i + 1);
       this.days.sort();
-      // console.log(this.days);
+      this.array[i] = false;
     }
   }
 
   time(i: number) {
     if (!this.timeOfTheDay) {
       this.timeOfTheDay = i + 1;
+      this.array2[i] = true;
     } else {
-      this.timeOfTheDay = null;
+      this.timeOfTheDay = !this.timeOfTheDay;
+      for (let j = 0; j < this.array2.length; j++) {
+        this.array2[j] = false;
+      }
     }
   }
 
@@ -88,7 +98,11 @@ export class TripComponent implements OnInit {
       timeOfDay: this.timeOfTheDay,
     });
     this.addTripServ.addTrip(this.addNewTrip.value).subscribe((data) => {
-      alert('SUCCESS!');
+      this.addSuccess = true;
+      setInterval(() => (this.timerCount -= 1), 1000);
+      setTimeout(() => {
+        this.router.navigate(['/trips']);
+      }, 5000);
     });
   }
 
@@ -108,6 +122,11 @@ export class TripComponent implements OnInit {
       this.router.navigate(['/login', { expired: '1' }]);
       return;
     }
+
+    this.custID = this._authService.getId();
+    this.customerService.getCustomerById(this.custID).subscribe((data) => {
+      this.toCustomer = data;
+    });
 
     // Binding input from reactive form "addNewTrip"
     this.addNewTrip = this.addNewTripFB.group({
