@@ -10,9 +10,11 @@ export class CustomerService {
 
   customers:any;
 
+  id:any;
+
   constructor(private httpClient:HttpClient) { }
 
-  getCustomers(id:any) {
-    return this.httpClient.get(`${this.baseURL}/getCustomer/${id}/`);
+  getCustomers() {
+    return this.httpClient.get(`${this.baseURL}/getCustomer/${this.id}/`);
   }
 }
