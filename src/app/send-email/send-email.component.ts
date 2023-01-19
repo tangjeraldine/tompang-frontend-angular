@@ -18,7 +18,7 @@ export class SendEmailComponent {
               private activatedRoute:ActivatedRoute) {}
 
   ngOnInit() {
-
+    
   }
 
   send() {
