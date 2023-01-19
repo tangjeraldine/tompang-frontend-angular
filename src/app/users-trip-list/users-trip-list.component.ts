@@ -236,5 +236,5 @@ export class UsersTripListComponent {
 
   findUsers(fromPostal:string, toPostal:string, days:string, timeOfDay:string) {
     this.router.navigate(['/show-same-trip', fromPostal, toPostal, days, timeOfDay]);
-  }
+  }  
 }
