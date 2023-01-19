@@ -8,10 +8,12 @@ import { ErrorComponent } from './error/error.component';
 import { EmailVerificationPgComponent } from './email-verification-pg/email-verification-pg.component';
 import { DiscussionRoomComponent } from './discussion-room/discussion-room.component';
 import { UsersTripListComponent } from './users-trip-list/users-trip-list.component';
+import { ListUsersWithSameDestinationComponent } from './list-users-with-same-destination/list-users-with-same-destination.component';
 const routes: Routes = [
+
   {
-    path: 'viewUserWithSameDest/:fromPost/toPost',
-    component: PublicLandingPgComponent,
+    path: 'users-same-destination/:fromPostal/:toPostal/:days/:timeofday',
+    component: ListUsersWithSameDestinationComponent,
   },
   {
     path: '',
