@@ -15,9 +15,16 @@ export class SameDestinationUsersService {
 
   listUsersWithSameTrips(fromPostal:string, toPostal:string,days:string,timeOfDay:string) {
 
-    
+    var params = {
+      fromPostal: fromPostal,
+      toPostal:toPostal,
+      days:days,
+      timeOfDay:timeOfDay
+    }
 
-    return this.httpClient.get(`${this.baseURL}/trip/getTripSameDest/${fromPostal}/${toPostal}/${days}/${timeOfDay}`+'?'+this.authService.generateAuthParamsStr());
+    var paramsStr = (new URLSearchParams(params)).toString();
+
+    return this.httpClient.get(`${this.baseURL}/trip/getTripSameDest?`+paramsStr+'&'+this.authService.generateAuthParamsStr());
 
   }
 
