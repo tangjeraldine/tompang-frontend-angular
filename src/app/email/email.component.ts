@@ -18,27 +18,35 @@ export class EmailComponent implements OnInit{
   user:any
   addNewEmail!: FormGroup;
   message:any
-  
+  sent = false;
 
-  constructor(private authService:AuthenticationService, private emailService: EmailService, private route:ActivatedRoute, private router:Router, private addNewEmailFB: FormBuilder,) {}
+  constructor(private authService:AuthenticationService, 
+              private emailService: EmailService, 
+              private route:ActivatedRoute, 
+              private router:Router, 
+              private addNewEmailFB: FormBuilder) {}
+
   ngOnInit(): void {
-    this.toCustomerId=this.route.snapshot.params['id']
+    if(this.authService.isCredentialsEmpty() || !this.authService.isCustomerRole()) {
+      this.router.navigate(['/login', {expired: '1'}]);
+      return;
+    } 
 
-
-    this.userId=this.authService.generateAuthHeaders()['header_id'];
-
+    this.toCustomerId=this.route.snapshot.params['id'];
+    this.userId=this.authService.generateAuthHeaders()['header_id']; 
 
     this.addNewEmail = this.addNewEmailFB.group({
       message: new FormControl('',Validators.required),
     });
   }
 
-  sendEmail() {
+  sendEmail() { 
+    this.sent = true;
+
     this.emailService.sendEmail(this.toCustomerId,this.addNewEmail.value.message).subscribe(data=>{
-      alert('Email Sent!')
-    })
-
-
+      alert ('Email sent!')
+      this.router.navigate(['/trips'])
+    }) 
   }
 
 }

@@ -38,8 +38,8 @@ export class ListUsersWithSameDestinationComponent implements OnInit{
     })
   }
 
-  sendEmail(id:any) {
-    this.router.navigate(['/email'], id)
+  sendEmail(id:any) { 
+    this.router.navigate(['/email', id]);
   }
 
   parseToDaysStr(daysStr:string) { 

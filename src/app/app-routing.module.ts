@@ -15,10 +15,10 @@ import { EmailComponent } from './email/email.component';
 const routes: Routes = [
   {
     path: 'email/:id',
-    component: EmailComponent,
+    component: EmailComponent, 
   },
   {
-    path: 'users-same-destination/:fromPostal/:toPostal/:days/:timeofday',
+    path: 'show-same-trip/:fromPostal/:toPostal/:days/:timeofday',
     component: ListUsersWithSameDestinationComponent,
   },
   {
