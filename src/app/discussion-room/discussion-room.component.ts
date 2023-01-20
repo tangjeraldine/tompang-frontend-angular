@@ -127,7 +127,8 @@ export class DiscussionRoomComponent {
     this.incoming_msg_subscription_ref = this._stompService.subscribe(
       '/client/new-message-status/' + this.selected_dr_id,
       (data: any) => {
-        if (this.message_list.length >= 10) {
+        if (this.message_list.length >= 10 && 
+            this.current_page == this.total_message_pages.length) {
           this.changePage(this.current_page + 1);
         } else {
           this.changePage(this.current_page);
@@ -233,7 +234,8 @@ export class DiscussionRoomComponent {
             this.incoming_msg_subscription_ref = this._stompService.subscribe(
               '/client/new-message-status/' + this.selected_dr_id,
               (data: any) => {
-                if (this.message_list.length >= 10) {
+                if (this.message_list.length >= 10 && 
+                    this.current_page == this.total_message_pages.length) {
                   this.changePage(this.current_page + 1);
                 } else {
                   this.changePage(this.current_page);
@@ -334,8 +336,8 @@ export class DiscussionRoomComponent {
       .getMessages(pageNo, this.selected_dr_id)
       .subscribe(
         (data: any) => {
-          this.message_list = data.message_list;
-          this.current_page = pageNo;
+          this.message_list = data.message_list; 
+          this.current_page = pageNo; 
 
           this.total_message_pages = [];
           for (let i = 1; i <= data.total_message_pages; i++) {

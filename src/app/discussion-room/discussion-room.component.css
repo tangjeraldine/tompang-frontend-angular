@@ -1,38 +1,3 @@
 table td {
     border: 1px solid;
 }
-
-.pagination {
-    display: inline-block;
-    text-align: center;
-}
-
-.pagination div {
-    float: left;
-    border: 1px solid gray;
-    margin: 0 4px;
-    background-color: gray;
-}
-  
-.pagination a {
-    color: white;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    transition: background-color .3s;
-    border: 1px solid gray;
-    margin: 0 4px;
-    background-color: gray;
-}
-  
-.pagination a.active {
-    background-color: #99ddff;
-    color: black;
-    border: 1px solid black;
-    cursor: default;
-}
-  
-.pagination a:hover:not(.active) {
-    cursor: pointer;
-    background-color: #ddd;
-}
