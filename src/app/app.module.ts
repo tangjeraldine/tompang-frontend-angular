@@ -25,7 +25,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListUsersWithSameDestinationComponent } from './list-users-with-same-destination/list-users-with-same-destination.component';
 import { EmailComponent } from './email/email.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
