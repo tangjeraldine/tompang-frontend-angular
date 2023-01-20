@@ -21,8 +21,7 @@ import { DiscussionRoomComponent } from './discussion-room/discussion-room.compo
 import { StompService } from './_services/stomp.service';
 import { TripService } from './_services/trip.service';
 import { MatButtonModule } from '@angular/material/button';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AddTripComponent } from './add-trip/add-trip.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { ListUsersWithSameDestinationComponent } from './list-users-with-same-destination/list-users-with-same-destination.component';
 import { EmailComponent } from './email/email.component';
 
@@ -37,10 +36,9 @@ import { EmailComponent } from './email/email.component';
     ErrorComponent,
     UsersTripListComponent,
     EmailVerificationPgComponent,
-    DiscussionRoomComponent,
-    AddTripComponent,
+    DiscussionRoomComponent, 
     ListUsersWithSameDestinationComponent,
-    EmailComponent,
+    EmailComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +50,7 @@ import { EmailComponent } from './email/email.component';
     ReactiveFormsModule,
     MatButtonModule,
     MatInputModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
   ],
   providers: [AuthenticationService, CookieService, StompService, TripService],
   bootstrap: [AppComponent],

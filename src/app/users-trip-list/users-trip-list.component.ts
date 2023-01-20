@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../_services/authentication.service';
-import { TripService } from '../_services/trip.service';
+import { TripService } from '../_services/trip.service';  
 
 @Component({
   selector: 'app-users-trip-list',
@@ -77,6 +77,7 @@ export class UsersTripListComponent {
     if (edit_days_csv == '') {
       this.edit_days_error = 'Please select at least 1 day';
     }
+    
 
     if (
       !(
@@ -125,10 +126,10 @@ export class UsersTripListComponent {
         (data) => {
           var obj: Array<any> = <Array<any>>this.trip_list;
           obj.splice(index, 1);
-          this.tripDeleted = true;
-          setInterval(() => {
-            this.timerCount -= 1;
-          }, 1000);
+          // this.tripDeleted = true;
+          // setInterval(() => {
+          //   this.timerCount -= 1;
+          // }, 1000);
         },
         (error) => {
           this.tripNotDeleted = true;
