@@ -1,4 +1,4 @@
-<!--Chris Code-->
+<!--Author: Chris-->
 <section class="relative flex flex-wrap lg:h-screen lg:items-center">
   <!-- Register Image Display -->
   <div class="relative h-64 w-full sm:h-96 lg:h-full lg:w-1/2">
@@ -38,19 +38,44 @@
               "
             >
               <span
-                *ngIf="registerForm.controls['name'].hasError('required')" class="text-red-500 text-sm"
+                *ngIf="registerForm.controls['name'].hasError('required')"
+                class="text-red-500 text-sm"
               >
-              <svg class="w-5 mb-1 inline-block" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"></path>
-              </svg>
-              Please enter your full name
+                <svg
+                  class="w-5 mb-1 inline-block"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
+                  ></path>
+                </svg>
+                Please enter your full name
               </span>
               <label
                 *ngIf="registerForm.controls['name'].hasError('minlength')"
               >
-              <svg class="w-5 mb-1 inline-block" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"></path>
-              </svg>
+                <svg
+                  class="w-5 mb-1 inline-block"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
+                  ></path>
+                </svg>
                 Full Name must be at least 10 characters long
               </label>
             </div>
@@ -76,11 +101,24 @@
                   registerForm.controls['phone'].hasError('required') ||
                   registerForm.controls['phone'].hasError('minlength') ||
                   registerForm.controls['phone'].hasError('maxlength')
-                " class="text-red-500 text-sm"
+                "
+                class="text-red-500 text-sm"
               >
-              <svg class="w-5 mb-1 inline-block" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"></path>
-              </svg>
+                <svg
+                  class="w-5 mb-1 inline-block"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
+                  ></path>
+                </svg>
                 Please enter a valid phone address
               </label>
             </div>
@@ -88,17 +126,36 @@
         </tr>
         <tr>
           <td colspan="2">
-            <input type="date" formControlName="dob" class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg"
-            placeholder="Please select your Date of Birth"/>
+            <input
+              type="date"
+              formControlName="dob"
+              class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg"
+              placeholder="Please select your Date of Birth"
+            />
             <div
               *ngIf="
                 registerForm.controls['dob'].invalid &&
                 registerForm.controls['dob'].touched
               "
             >
-              <label class="text-red-500 text-sm" *ngIf="registerForm.controls['dob'].hasError('required')">
-                <svg class="w-5 mb-1 inline-block" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"></path>
+              <label
+                class="text-red-500 text-sm"
+                *ngIf="registerForm.controls['dob'].hasError('required')"
+              >
+                <svg
+                  class="w-5 mb-1 inline-block"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
+                  ></path>
                 </svg>
                 Please enter your Date of Birth
               </label>
@@ -124,11 +181,24 @@
                 *ngIf="
                   registerForm.controls['username'].hasError('required') ||
                   registerForm.controls['username'].hasError('minlength')
-                " class="text-red-500 text-sm"
+                "
+                class="text-red-500 text-sm"
               >
-              <svg class="w-5 mb-1 inline-block" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"></path>
-              </svg>
+                <svg
+                  class="w-5 mb-1 inline-block"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
+                  ></path>
+                </svg>
                 Please enter minimum length of 10 chars
               </label>
             </div>
@@ -152,11 +222,24 @@
                 *ngIf="
                   registerForm.controls['email'].hasError('required') ||
                   registerForm.controls['email'].hasError('email')
-                " class="text-red-500 text-sm"
+                "
+                class="text-red-500 text-sm"
               >
-              <svg class="w-5 mb-1 inline-block" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"></path>
-              </svg>
+                <svg
+                  class="w-5 mb-1 inline-block"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
+                  ></path>
+                </svg>
                 Invalid input
               </label>
             </div>
@@ -175,17 +258,31 @@
               *ngIf="
                 registerForm.controls['password'].invalid &&
                 registerForm.controls['password'].touched
-              " class="text-red-500 text-sm"
+              "
+              class="text-red-500 text-sm"
             >
               <label
                 *ngIf="
                   registerForm.controls['password'].hasError('required') ||
                   registerForm.controls['password'].hasError('minlength')
-                " class="text-red-500 text-sm"
+                "
+                class="text-red-500 text-sm"
               >
-              <svg class="w-5 mb-1 inline-block" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"></path>
-              </svg>
+                <svg
+                  class="w-5 mb-1 inline-block"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
+                  ></path>
+                </svg>
                 Please enter your Password
               </label>
             </div>
@@ -204,22 +301,47 @@
               *ngIf="
                 registerForm.controls['pwConfirm'].invalid &&
                 registerForm.controls['pwConfirm'].touched
-              " class="text-red-500 text-sm"
+              "
+              class="text-red-500 text-sm"
             >
               <label
                 *ngIf="registerForm.controls['pwConfirm'].hasError('required')"
               >
-              <svg class="w-5 mb-1 inline-block" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"></path>
-              </svg>
+                <svg
+                  class="w-5 mb-1 inline-block"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
+                  ></path>
+                </svg>
                 Please confirm the password
               </label>
               <label
                 *ngIf="registerForm.errors?.['notmatched'] && !(registerForm.controls['pwConfirm'].hasError('required'))"
               >
-              <svg class="w-5 mb-1 inline-block" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"></path>
-              </svg>
+                <svg
+                  class="w-5 mb-1 inline-block"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
+                  ></path>
+                </svg>
                 Passwords must match
               </label>
             </div>
@@ -239,14 +361,14 @@
           </td>
           <td>
             <button
-            class="inline-block rounded border border-red-500 px-8 py-3 transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-red-700"
-            routerLink="/home"
-          >
-            <span
-              class="relative text-sm font-medium text-red-500 transition-colors"
-              >Back to Home</span
+              class="inline-block rounded border border-red-500 px-8 py-3 transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-red-700"
+              routerLink="/home"
             >
-          </button>
+              <span
+                class="relative text-sm font-medium text-red-500 transition-colors"
+                >Back to Home</span
+              >
+            </button>
           </td>
         </tr>
       </table>

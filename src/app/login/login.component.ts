@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '../_services/authentication.service';
 
+// Author: Kevin
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,7 +21,7 @@ export class LoginComponent {
     private _authService: AuthenticationService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit() {
     if (this.activatedRoute.snapshot.paramMap.get('error') == '1') {
@@ -36,7 +38,7 @@ export class LoginComponent {
     }
   }
 
-  login(): void {  
+  login(): void {
     this.errors = [];
     this.email = this.email.trim().toLowerCase();
 
@@ -59,7 +61,7 @@ export class LoginComponent {
         .login(this.email, this.password, this.usertype)
         .subscribe(
           (data: any) => {
-            if (data.header_rsp == 'ok') { 
+            if (data.header_rsp == 'ok') {
               this._authService.setCredentials(data);
               this.router.navigate(['/trip']);
               return;
@@ -69,7 +71,7 @@ export class LoginComponent {
               this.isLoading = false;
             }
           },
-          (error: any) => { 
+          (error: any) => {
             this.errors.push(
               'Opps! We ran into some problems, please try to login again'
             );

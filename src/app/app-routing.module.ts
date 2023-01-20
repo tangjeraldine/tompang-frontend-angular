@@ -5,17 +5,17 @@ import { TripComponent } from './trip/trip.component';
 import { RegisterComponent } from './register/register.component';
 import { PublicLandingPgComponent } from './public-landing-pg/public-landing-pg.component';
 import { ErrorComponent } from './error/error.component';
-import { EmailVerificationPgComponent } from './email-verification-pg/email-verification-pg.component';
 import { DiscussionRoomComponent } from './discussion-room/discussion-room.component';
 import { UsersTripListComponent } from './users-trip-list/users-trip-list.component';
 import { ListUsersWithSameDestinationComponent } from './list-users-with-same-destination/list-users-with-same-destination.component';
-import { SendEmailComponent } from './send-email/send-email.component';
 import { EmailComponent } from './email/email.component';
+
+// Author: Jeraldine
 
 const routes: Routes = [
   {
     path: 'email/:id',
-    component: EmailComponent, 
+    component: EmailComponent,
   },
   {
     path: 'show-same-trip/:fromPostal/:toPostal/:days/:timeofday',
@@ -30,18 +30,13 @@ const routes: Routes = [
     component: PublicLandingPgComponent,
   },
   {
-    path: 'email-verif',
-    component: EmailVerificationPgComponent,
-  },
-  {
     path: 'trip',
     component: TripComponent,
   },
-  { path: 'trips', component: UsersTripListComponent}, 
+  { path: 'trips', component: UsersTripListComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'discussion-room', component: DiscussionRoomComponent },
-  { path: 'send-email', component: SendEmailComponent},
   {
     path: '**',
     component: ErrorComponent,

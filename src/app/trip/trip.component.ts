@@ -11,6 +11,8 @@ import { AuthenticationService } from '../_services/authentication.service';
 import { ViewportScroller } from '@angular/common';
 import { CustomerService } from '../_services/customer.service';
 
+// Author: Jeraldine
+
 @Component({
   selector: 'app-trip',
   templateUrl: './trip.component.html',

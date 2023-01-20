@@ -14,7 +14,6 @@ import { MatInputModule } from '@angular/material/input';
 import { LayoutComponentModule } from './layout-component/layout-component.module';
 import { ErrorComponent } from './error/error.component';
 import { UsersTripListComponent } from './users-trip-list/users-trip-list.component';
-import { EmailVerificationPgComponent } from './email-verification-pg/email-verification-pg.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CookieService } from 'ngx-cookie-service';
 import { DiscussionRoomComponent } from './discussion-room/discussion-room.component';
@@ -34,7 +33,6 @@ import { EmailComponent } from './email/email.component';
     RegisterComponent,
     ErrorComponent,
     UsersTripListComponent,
-    EmailVerificationPgComponent,
     DiscussionRoomComponent,
     ListUsersWithSameDestinationComponent,
     EmailComponent,

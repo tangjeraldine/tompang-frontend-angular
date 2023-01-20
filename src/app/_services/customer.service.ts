@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+// Author: Eugene
+// Purpose: Get user information
+
 @Injectable({
   providedIn: 'root',
 })

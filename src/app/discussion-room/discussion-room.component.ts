@@ -4,6 +4,9 @@ import { AuthenticationService } from '../_services/authentication.service';
 import { DiscussionRoomService } from '../_services/discussion-room.service';
 import { StompService } from '../_services/stomp.service';
 
+// Author: Kevin
+// Purpose: Provides functionality to discussion room component
+
 @Component({
   selector: 'app-discussion-room',
   templateUrl: './discussion-room.component.html',
@@ -289,7 +292,7 @@ export class DiscussionRoomComponent {
     this.users_online = JSON.parse(data.body);
   }
 
-  broadcastTypingStatus() { 
+  broadcastTypingStatus() {
     if (this.new_message.trim() == '') {
       this._stompService.send('/server/stop-typing', {
         username: this.username,

@@ -2,6 +2,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthenticationService } from './authentication.service';
 
+// Author: Jeraldine
+// Purpose: To take in data from TripComponent and convert into FormData -> Append authorisation information so that the post request can be authorised.
 @Injectable({
   providedIn: 'root',
 })
@@ -26,7 +28,7 @@ export class AddTripService {
     formData.append('header_role', auth_params['header_role']);
     formData.append('header_expiry', auth_params['header_expiry']);
     formData.append('header_signature', auth_params['header_signature']);
- 
-    return this.httpClient.post(this.baseURL + "/customer/trip/add", formData);
+
+    return this.httpClient.post(this.baseURL + '/customer/trip/add', formData);
   }
 }
