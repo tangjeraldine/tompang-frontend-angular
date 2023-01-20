@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module'; 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { PublicLandingPgComponent } from './public-landing-pg/public-landing-pg.component';
@@ -23,7 +23,7 @@ import { TripService } from './_services/trip.service';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { ListUsersWithSameDestinationComponent } from './list-users-with-same-destination/list-users-with-same-destination.component';
-import { EmailComponent } from './email/email.component';
+import { EmailComponent } from './email/email.component'; 
 
 @NgModule({
   declarations: [
@@ -39,7 +39,7 @@ import { EmailComponent } from './email/email.component';
     ListUsersWithSameDestinationComponent,
     EmailComponent
   ],
-  imports: [
+  imports: [ 
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -52,6 +52,6 @@ import { EmailComponent } from './email/email.component';
     BrowserAnimationsModule
   ],
   providers: [AuthenticationService, CookieService, StompService, TripService],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent] 
 })
 export class AppModule {}
