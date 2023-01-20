@@ -1,14 +1,15 @@
 <app-header-user></app-header-user>
 <img
   src="../../assets/images/social_1.jpg"
-  class="w-5/6 m-auto opacity-80"
+  class="max-w-screen-xl m-auto opacity-80"
   alt="banner"
 />
-<div class="rounded-xl bg-white p-6 ring ring-indigo-50 sm:p-8 w-90 m-8">
-  <table style="width: 100%; height: 50%"> 
+<div class="bg-white p-6 ring ring-indigo-50 sm:p-8 max-w-screen-xl m-8 mx-auto">
+  <table class="w-full rounded-none"> 
     <tr>
-      <td colspan="3">
-        <select [(ngModel)]="selected_dr_id" (change)="changeRoom()">
+      <td colspan="3" class="p-4 text-lg text-center bg-red-700">
+        <span class="text-white pr-2">Postal Code : </span>
+        <select class="py-2 px-4 text-red-700" [(ngModel)]="selected_dr_id" (change)="changeRoom()">
           <option *ngFor="let rm of this.discussion_room_list" [value]="rm.id">
             {{ rm.fromPostal }}XXX to {{ rm.toPostal }}XXX
           </option>
@@ -117,20 +118,20 @@
         </td>
       </tr>
     </ng-container>
-    
+    <!-- PAGINATION -->
     <tr>
       <td colspan="3">
         <div style="width: fit-content; margin: auto">
-          <div class="pagination">
+          <div class="pagination m-2">
             <a
-              class="inline-block rounded-full border border-red-700 p-3 text-red-600 hover:bg-red-600 hover:text-white focus:outline-none focus:ring active:bg-red-500"
+              class="inline-block p-3 rounded-full border-red-700 text-red-600 hover:bg-red-600 hover:text-white focus:outline-none focus:ring active:bg-red-500"
               *ngIf="this.current_page > 1"
               (click)="changePage(this.current_page - 1)"
               >&laquo;</a
             >
 
             <a
-              class="inline-block rounded-full border border-red-700 p-3 text-red-600 hover:bg-red-600 hover:text-white focus:outline-none focus:ring active:bg-red-500"
+              class="inline-block mx-4 p-3 rounded-full border-red-700 text-red-600 hover:bg-red-600 hover:text-white focus:outline-none focus:ring active:bg-red-500"
               *ngFor="let p of this.total_message_pages"
               [class.active]="p == this.current_page"
               (click)="p != this.current_page ? changePage(p) : null"
@@ -139,7 +140,7 @@
             </a>
 
             <a
-              class="inline-block rounded-full border border-red-700 p-3 text-red-600 hover:bg-red-600 hover:text-white focus:outline-none focus:ring active:bg-red-500"
+              class="inline-block mx-4 p-3 rounded-full border-red-700 text-red-600 hover:bg-red-600 hover:text-white focus:outline-none focus:ring active:bg-red-500"
               *ngIf="this.current_page < this.total_message_pages.length"
               (click)="changePage(this.current_page + 1)"
               >&raquo;</a
