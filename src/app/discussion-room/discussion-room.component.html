@@ -7,13 +7,13 @@
   class="max-w-screen-xl m-auto opacity-80"
   alt="banner"
 />
-<div class="bg-white p-6 ring ring-indigo-50 sm:p-8 max-w-screen-xl m-8 mx-auto">
-  <table class="w-full rounded-none">
+<div class="bg-white p-6 ring ring-indigo-50 sm:p-8 max-w-screen-xl m-8 mx-auto rounded-3xl">
+  <table class="w-full rounded-3xl">
     <tr>
       <td colspan="3" class="p-4 text-lg text-center bg-red-700">
         <span class="text-white pr-2">Postal Code : </span>
         <!--Iterates over the list of discussion room records (similar postal codes) and displays the information below-->
-        <select class="py-2 px-4 text-red-700" [(ngModel)]="selected_dr_id" (change)="changeRoom()">
+        <select class="py-2 px-4 text-red-700 rounded-3xl" [(ngModel)]="selected_dr_id" (change)="changeRoom()">
           <option *ngFor="let rm of this.discussion_room_list" [value]="rm.id">
             {{ rm.fromPostal }}XXX to {{ rm.toPostal }}XXX
           </option>
@@ -21,13 +21,12 @@
       </td>
     </tr>
     <tr *ngFor="let msg of this.message_list">
-      <td style="width: 20%">
-        <b>@{{ msg.customer.username }} </b>
-        <br />
-        Sent on: ({{ msg.longDate | date : "short" }})
+      <td class="w-1/5">
+        <span class="ml-1 font-bold">@{{ msg.customer.username }} </span>
+        <p class="ml-1">Sent on: ({{ msg.longDate | date : "short" }})</p>
       </td>
       <td colspan="2">
-        {{ msg.message }}
+        <span class=" ml-1">{{ msg.message }}</span>
         <!--:: Kevin: span tag below handles drag and drop uploads of files :: -->
         <span *ngIf="msg.fileMessage">
           <img
@@ -55,7 +54,7 @@
               <small
                 >Users currently online:
                 <button
-                  class="group relative inline-block overflow-hidden border border-red-700 px-6 py-2 focus:outline-none focus:ring m-3"
+                  class="group relative inline-block overflow-hidden border border-red-700 bg-white px-6 py-2 focus:outline-none focus:ring m-3"
                   *ngFor="let i of this.users_online; last as last"
                 >
                   <span
@@ -101,11 +100,11 @@
                 <!--<a href="https://www.flaticon.com/free-animated-icons/email" title="email animated icons">Email animated icons created by Freepik - Flaticon</a>-->
 
                 <button
-                  class="block bg-yellow-400 px-5 py-3 text-center text-xs font-bold uppercase text-gray-900 transition hover:bg-yellow-500 m-5 rounded-full"
+                  class="block bg-red-500 px-5 py-3 text-center text-xs font-bold uppercase text-black transition hover:bg-red-700 m-5 rounded-full"
                   (click)="sendMessage()"
                 >
                   <img
-                    class="h-7"
+                    class="h-7 inline"
                     src="../../assets/images/email.png"
                     alt="email-logo"
                   />

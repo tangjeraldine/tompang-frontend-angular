@@ -1,7 +1,7 @@
 <!--Author: Kevin (structure & directives), Stephen (Styling)-->
 <section class="relative flex flex-wrap lg:h-screen lg:items-center">
   <div
-    class="grid place-items-center w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24"
+    class="grid place-items-center w-full lg:w-1/2 max-h-screen"
   >
     <table class="mt-8 mb-0 max-w-sm">
       <tr>
@@ -77,7 +77,7 @@
           <button
             [style.display]="this.isLoading ? 'none' : 'inline'"
             (click)="login()"
-            class="inline-block rounded bg-red-500 px-8 py-3 transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-red-700"
+            class="inline-block rounded bg-red-500 px-8 py-3 transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-red-700 w-full"
           >
             <span
               class="relative text-sm font-medium text-white transition-colors group-hover:text-amber-500"
@@ -87,7 +87,7 @@
         </td>
         <td>
           <button
-            class="inline-block rounded border border-red-500 px-8 py-3 transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-red-700"
+            class="inline-block rounded border border-red-500 px-8 py-3 transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-red-700 w-full"
             routerLink="/home"
           >
             <span

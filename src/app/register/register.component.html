@@ -1,7 +1,7 @@
 <!--Author: Chris-->
 <section class="relative flex flex-wrap lg:h-screen lg:items-center">
   <!-- Register Image Display -->
-  <div class="relative h-64 w-full sm:h-96 lg:h-full lg:w-1/2">
+  <div class="relative h-64 w-full sm:h-96 lg:h-full lg:w-1/2 max-h-screen">
     <img
       alt="welcome_image"
       src="../../assets/images/car_bg_2.jpg"
@@ -9,10 +9,10 @@
     />
   </div>
   <div
-    class="grid place-items-center w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24"
+    class="grid place-items-center w-full lg:w-1/2"
   >
     <form [formGroup]="registerForm" (submit)="createUser()">
-      <table class="mt-8 mb-0 max-w-sm">
+      <table class="max-w-sm m-4">
         <tr>
           <td colspan="2" class="text-2xl font-bold sm:text-3xl text-center">
             <span>Registration Form</span>
@@ -28,7 +28,7 @@
             <input
               type="text"
               formControlName="name"
-              class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg"
+              class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg mb-1.5 mt-2 lg:h-10 xl:h-14"
               placeholder="Please enter your Full Name"
             />
             <div
@@ -37,12 +37,12 @@
                 registerForm.controls['name'].touched
               "
             >
-              <span
+              <label
                 *ngIf="registerForm.controls['name'].hasError('required')"
-                class="text-red-500 text-sm"
+                class="text-red-500 sm:text-xs xl:text-sm"
               >
                 <svg
-                  class="w-5 mb-1 inline-block"
+                  class="w-5 mb-0.5 inline-block"
                   fill="none"
                   stroke="currentColor"
                   stroke-width="1.5"
@@ -57,12 +57,13 @@
                   ></path>
                 </svg>
                 Please enter your full name
-              </span>
-              <label
+              </label>
+              <label 
                 *ngIf="registerForm.controls['name'].hasError('minlength')"
+                class="text-red-500 sm:text-xs xl:text-sm"
               >
                 <svg
-                  class="w-5 mb-1 inline-block"
+                  class="w-5 mb-0.5 inline-block"
                   fill="none"
                   stroke="currentColor"
                   stroke-width="1.5"
@@ -86,7 +87,7 @@
             <input
               type="text"
               formControlName="phone"
-              class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg"
+              class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg mb-1.5 lg:h-10 xl:h-14"
               placeholder="Please enter your phone number"
             />
             <br />
@@ -102,10 +103,10 @@
                   registerForm.controls['phone'].hasError('minlength') ||
                   registerForm.controls['phone'].hasError('maxlength')
                 "
-                class="text-red-500 text-sm"
+                class="text-red-500 sm:text-xs xl:text-sm"
               >
                 <svg
-                  class="w-5 mb-1 inline-block"
+                  class="w-5 mb-0.5 inline-block"
                   fill="none"
                   stroke="currentColor"
                   stroke-width="1.5"
@@ -129,7 +130,7 @@
             <input
               type="date"
               formControlName="dob"
-              class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg"
+              class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg mb-1.5 lg:h-10 xl:h-14"
               placeholder="Please select your Date of Birth"
             />
             <div
@@ -139,11 +140,11 @@
               "
             >
               <label
-                class="text-red-500 text-sm"
+                class="text-red-500 sm:text-xs xl:text-sm"
                 *ngIf="registerForm.controls['dob'].hasError('required')"
               >
                 <svg
-                  class="w-5 mb-1 inline-block"
+                  class="w-5 mb-0.5 inline-block"
                   fill="none"
                   stroke="currentColor"
                   stroke-width="1.5"
@@ -167,7 +168,7 @@
             <input
               type="text"
               formControlName="username"
-              class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg"
+              class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg mb-1.5 lg:h-10 xl:h-14"
               placeholder="Please enter your desired user name"
             />
             <br />
@@ -182,10 +183,10 @@
                   registerForm.controls['username'].hasError('required') ||
                   registerForm.controls['username'].hasError('minlength')
                 "
-                class="text-red-500 text-sm"
+                class="text-red-500 sm:text-xs xl:text-sm"
               >
                 <svg
-                  class="w-5 mb-1 inline-block"
+                  class="w-5 mb-0.5 inline-block"
                   fill="none"
                   stroke="currentColor"
                   stroke-width="1.5"
@@ -208,7 +209,7 @@
           <td colspan="2">
             <input
               formControlName="email"
-              class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg"
+              class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg mb-1.5 lg:h-10 xl:h-14"
               placeholder="Please enter your email address"
             />
             <br />
@@ -223,10 +224,10 @@
                   registerForm.controls['email'].hasError('required') ||
                   registerForm.controls['email'].hasError('email')
                 "
-                class="text-red-500 text-sm"
+                class="text-red-500 text-sm sm:text-xs xl:text-sm"
               >
                 <svg
-                  class="w-5 mb-1 inline-block"
+                  class="w-5 mb-0.5 inline-block"
                   fill="none"
                   stroke="currentColor"
                   stroke-width="1.5"
@@ -249,7 +250,7 @@
           <td colspan="2">
             <input
               formControlName="password"
-              class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg"
+              class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg mb-1.5 lg:h-10 xl:h-14"
               placeholder="Please enter your desired password"
               type="password"
             />
@@ -266,10 +267,10 @@
                   registerForm.controls['password'].hasError('required') ||
                   registerForm.controls['password'].hasError('minlength')
                 "
-                class="text-red-500 text-sm"
+                class="text-red-500 sm:text-xs xl:text-sm"
               >
                 <svg
-                  class="w-5 mb-1 inline-block"
+                  class="w-5 mb-0.5 inline-block"
                   fill="none"
                   stroke="currentColor"
                   stroke-width="1.5"
@@ -292,7 +293,7 @@
           <td colspan="2"> 
             <input
               formControlName="pwConfirm"
-              class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg"
+              class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg mb-1.5 lg:h-10 xl:h-14"
               placeholder="Please confirm your password"
               type="password"
             />
@@ -302,13 +303,13 @@
                 registerForm.controls['pwConfirm'].invalid &&
                 registerForm.controls['pwConfirm'].touched
               "
-              class="text-red-500 text-sm"
             >
               <label
                 *ngIf="registerForm.controls['pwConfirm'].hasError('required')"
+                class="text-red-500 sm:text-xs xl:text-sm"
               >
                 <svg
-                  class="w-5 mb-1 inline-block"
+                  class="w-5 mb-0.5 inline-block"
                   fill="none"
                   stroke="currentColor"
                   stroke-width="1.5"
@@ -326,9 +327,10 @@
               </label>
               <label
                 *ngIf="registerForm.errors?.['notmatched'] && !(registerForm.controls['pwConfirm'].hasError('required'))"
+                class="text-red-500 sm:text-xs xl:text-sm"
               >
                 <svg
-                  class="w-5 mb-1 inline-block"
+                  class="w-5 mb-0.5 inline-block"
                   fill="none"
                   stroke="currentColor"
                   stroke-width="1.5"
@@ -348,10 +350,10 @@
           </td>
         </tr>
         <tr>
-          <td>
+          <td class="text-center">
             <button
               [disabled]="registerForm.invalid"
-              class="w-100 inline-block rounded bg-red-500 px-8 py-3 transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-red-700"
+              class="w-11/12 inline-block rounded bg-red-500 px-8 py-3 transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-red-700"
             >
               <span
                 class="relative text-sm font-medium text-white transition-colors group-hover:text-amber-500"
@@ -361,7 +363,7 @@
           </td>
           <td>
             <button
-              class="inline-block rounded border border-red-500 px-8 py-3 transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-red-700"
+              class="inline-block rounded border bg-white border-red-500 px-8 py-3 transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-red-700 w-11/12"
               routerLink="/home"
             >
               <span
