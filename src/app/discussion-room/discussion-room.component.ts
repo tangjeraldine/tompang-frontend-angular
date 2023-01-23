@@ -10,7 +10,7 @@ import { StompService } from '../_services/stomp.service';
 @Component({
   selector: 'app-discussion-room',
   templateUrl: './discussion-room.component.html',
-  styleUrls: ['./discussion-room.component.css'],
+  styleUrls: ['./discussion-room.component.css'], 
 })
 export class DiscussionRoomComponent {
   constructor(

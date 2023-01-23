@@ -71,7 +71,7 @@ export class RegisterComponent implements OnInit {
     var form_data = new FormData();
     form_data.append('name', this.registerForm.controls['name'].value);
     form_data.append('phone', this.registerForm.controls['phone'].value);
-    form_data.append('dob', this.registerForm.controls['dob'].value);
+    form_data.append('dob_string', this.registerForm.controls['dob'].value);
     form_data.append('username', this.registerForm.controls['username'].value);
     form_data.append('email', this.registerForm.controls['email'].value);
     form_data.append('password', this.registerForm.controls['password'].value);
