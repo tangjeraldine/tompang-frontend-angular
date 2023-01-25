@@ -8,9 +8,7 @@
       class="absolute inset-0 h-full w-full object-cover"
     />
   </div>
-  <div
-    class="grid place-items-center w-full lg:w-1/2"
-  >
+  <div class="grid place-items-center w-full lg:w-1/2">
     <form [formGroup]="registerForm" (submit)="createUser()">
       <table class="max-w-sm m-4">
         <tr>
@@ -58,7 +56,7 @@
                 </svg>
                 Please enter your full name
               </label>
-              <label 
+              <label
                 *ngIf="registerForm.controls['name'].hasError('minlength')"
                 class="text-red-500 sm:text-xs xl:text-sm"
               >
@@ -290,7 +288,7 @@
           </td>
         </tr>
         <tr>
-          <td colspan="2"> 
+          <td colspan="2">
             <input
               formControlName="pwConfirm"
               class="relative w-full rounded-lg border-black p-4 pr-12 text-sm shadow-lg mb-1.5 lg:h-10 xl:h-14"

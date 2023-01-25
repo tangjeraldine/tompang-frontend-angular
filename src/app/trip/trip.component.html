@@ -297,8 +297,9 @@
       <p class="text-center m-7">___________________________</p>
       <div class="mx-auto max-w-lg text-center">
         <p class="m-6 mt-10 text-gray-500">
-          Any additional remarks that you want your fellow Tompang-kakis to
-          know?
+          Please add additional information that you want your fellow
+          Tompang-kakis to know (e.g. exact time of pick up, vehicle preference,
+          budget).
         </p>
         <br />
         <textarea
@@ -307,20 +308,53 @@
           rows="5"
           type="text"
           class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
-          placeholder="Remarks are optional"
+          placeholder="Remarks here"
         ></textarea>
+        <div
+          *ngIf="
+            addNewTrip.controls['description'].invalid &&
+            addNewTrip.controls['description'].touched
+          "
+        >
+          <small
+            *ngIf="
+              addNewTrip.controls['description'].errors &&
+              addNewTrip.controls['description'].hasError('required')
+            "
+            class="text-red-500"
+            >A trip description is required.</small
+          >
+          <small
+            *ngIf="
+              addNewTrip.controls['description'].errors &&
+              addNewTrip.controls['description'].hasError('minlength')
+            "
+            class="text-red-500"
+            >Description needs to contain at least 20 characters.</small
+          >
+          <small
+            *ngIf="
+              addNewTrip.controls['description'].errors &&
+              addNewTrip.controls['description'].hasError('maxlength')
+            "
+            class="text-red-500"
+            >Description can only contain a maximum of 300 characters.</small
+          >
+        </div>
       </div>
 
       <div class="flex items-center justify-between">
         <button
+          type="submit"
           class="ml-3 inline-block rounded-lg bg-gray-300 px-5 py-3 text-sm font-medium text-red-700"
           (click)="resetFields()"
         >
           Start Over
         </button>
+        <!--[disabled]="!addNewTrip.valid"-->
         <button
           class="ml-3 inline-block rounded-lg bg-red-700 px-5 py-3 text-sm font-medium text-white"
-          [disabled]="!addNewTrip.valid && isSamePostalCode"
+          [disabled]="!addNewTrip.valid && isSamePostalCode === true"
         >
           Add To List!
         </button>
@@ -331,7 +365,7 @@
       role="alert"
       class="rounded-xl border border-gray-100 p-4 shadow-xl z-10"
     >
-      <div class="flex-1 mx-auto w-60">
+      <div class="flex-1 mx-auto w-70">
         <strong class="block font-medium text-gray-900">
           <span class="text-green-600">
             <svg

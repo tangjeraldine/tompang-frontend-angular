@@ -90,6 +90,7 @@ export class TripComponent implements OnInit {
     this.addNewTrip.reset();
     this.days = [];
     this.timeOfTheDay = null;
+    this.router.navigate(['/trip']);
   }
 
   addNewTripDetails() {
@@ -142,7 +143,11 @@ export class TripComponent implements OnInit {
       role: new FormControl('', [Validators.required]),
       days: new FormControl('', [Validators.required]),
       timeOfDay: new FormControl('', [Validators.required]),
-      description: new FormControl(''),
+      description: new FormControl('', [
+        Validators.required,
+        Validators.minLength(20),
+        Validators.maxLength(300),
+      ]),
     });
   }
 }
